@@ -8,11 +8,14 @@
     <title>{{ .Query }}</title>
   </head>
   <body>
-    {{ range .Results }}
-    <a href="{{ .Href }}">
-      <h1>{{ .Title }}</h1>
-      <p>{{ .Description }}</p>
-    </a>
-    {{ end }}
+    <section id="results">
+      {{ range .Results }}
+      <a href="{{ .Href }}">
+        <p>{{ .Href }}</p>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Description }}</p>
+      </a>
+      {{ end }}
+    </section>
   </body>
 </html>
