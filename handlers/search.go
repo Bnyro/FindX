@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"net/url"
 	"strconv"
 
 	"github.com/bnyrogo/engines"
@@ -8,7 +9,7 @@ import (
 )
 
 func Search(c *fiber.Ctx) error {
-	query := c.Query("q", "")
+	query := url.QueryEscape(c.Query("q", ""))
 	page, _ := strconv.Atoi(c.Query("page", "1"))
 	results, err := engines.FetchText(query, page)
 
@@ -18,6 +19,7 @@ func Search(c *fiber.Ctx) error {
 
 	return c.Render("results", fiber.Map {
 		"Query": query,
+		"Page": page,
 		"Results": results,
 	})
 }

@@ -32,3 +32,11 @@ a {
   background-color: var(--surface);
   margin: 0.5rem;
 }
+
+.btm-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
