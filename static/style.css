@@ -2,10 +2,12 @@
   box-sizing: border-box;
 }
 
+/* Colors taken form Night Owl */
 :root {
   --background: #011627;
   --foreground: #d6deeb;
   --surface: #1d3b53;
+  --radius: 0.5rem;
 }
 
 html {
@@ -13,6 +15,15 @@ html {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: var(--background);
   color: var(--foreground);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
 }
 
 a {
@@ -39,4 +50,83 @@ a {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: min(90vw, 35rem);
+  padding: 0.2rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+#container > * {
+  padding: 0.5rem 0.3rem;
+  border: none;
+}
+
+#search {
+  background: var(--surface);
+  color: var(--foreground);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: 0.3s ease-in-out filter;
+  font-size: large;
+}
+
+#search:hover {
+  filter: brightness(1.2);
+}
+
+#input {
+  background: var(--background);
+  color: var(--foreground);
+  font-size: large;
+}
+
+#input:focus {
+  outline: none;
+}
+
+#search {
+  width: 100%;
+  font-weight: 500;
+}
+
+#title {
+  white-space: pre-wrap;
+  display: flex;
+  font-size: min(4rem, 17vw);
+  font-weight: 500;
+  margin: 2rem 0;
+}
+
+#title #b {
+  color: #eb6f92;
+}
+
+#title #n {
+  color: #f6c177;
+}
+
+#title #y {
+  color: #ebbcba;
+}
+
+#title #r {
+  color: #31748f;
+}
+
+#title #o-1 {
+  color: #9ccfd8;
+}
+
+#title #g {
+  color: #c4a7e7;
+}
+
+#title #o-2 {
+  color: #908caa;
 }
