@@ -10,11 +10,21 @@
   <body>
     <section id="results">
       {{ range .Results }}
-      <a href="{{ .Href }}">
+      <a href="{{ .Url }}">
         <p>{{ .Short }}</p>
         <h1>{{ .Title }}</h1>
         <p>{{ .Description }}</p>
       </a>
+      {{ end }}
+    </section>
+    <section id="images">
+      {{ range .Images }}
+      <div class="img-container">
+        <a href="{{ .Media }}">
+          <img src="{{ .Thumbnail }}" alt="{{ .Title }}" />
+        </a>
+        <a class="img-title" href="{{ .Url }}">{{ .Title }}</a>
+      </div>
       {{ end }}
     </section>
     <div id="btm-container"></div>

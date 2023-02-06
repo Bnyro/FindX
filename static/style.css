@@ -31,6 +31,14 @@ a {
   color: var(--foreground);
 }
 
+a:hover {
+  filter: brightness(0.9);
+}
+
+img {
+  border-radius: var(--radius);
+}
+
 #results {
   display: flex;
   flex-direction: column;
@@ -42,6 +50,29 @@ a {
   padding: 1rem;
   background-color: var(--surface);
   margin: 0.5rem;
+}
+
+#images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#images > div {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 1rem;
+  width: min-content;
+}
+
+#images img {
+  height: 20rem;
+}
+
+.img-title {
+  margin-top: 0.3rem;
+  width: 100%;
 }
 
 .btm-container {

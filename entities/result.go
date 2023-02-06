@@ -1,7 +1,7 @@
 package entities
 
 type Result struct {
-	Href		string
+	Url		string
 	Short		string
 	Title 		string
 	Description string

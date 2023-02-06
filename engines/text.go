@@ -1,7 +1,6 @@
 package engines
 
 import (
-	"bytes"
 	"fmt"
 	"net/url"
 	"regexp"
@@ -9,39 +8,17 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/bnyrogo/entities"
-	"github.com/valyala/fasthttp"
+	"github.com/bnyrogo/web"
 )
 
 func FetchText(query string, page int) ([]entities.Result, error) {
 	var results []entities.Result
 
-	req := fasthttp.AcquireRequest()
-
 	uri := fmt.Sprintf("https://www.google.com/search?q=%s&start=%d&ie=utf8&oe=utf8", query, (page - 1) * 10)
-	req.SetRequestURI(uri)
-	req.Header.SetCookie("CONSENT", "YES+")
-	resp := fasthttp.AcquireResponse()
-    defer fasthttp.ReleaseResponse(resp)
-
-	err := fasthttp.Do(req, resp)
+	doc, err := web.RequestHtml(uri)
 
 	if err != nil {
 		return results, err
-	}
-
-	contentEncoding := resp.Header.Peek("Content-Encoding")
-    var body []byte
-    if bytes.EqualFold(contentEncoding, []byte("gzip")) {
-        body, _ = resp.BodyGunzip()
-    } else {
-        body = resp.Body()
-    }
-
-	reader := strings.NewReader(string(body))
-    doc, err := goquery.NewDocumentFromReader(reader)
-
-	if err != nil {
-		fmt.Println(err.Error())
 	}
 
 	doc.Find(".Gx5Zad").Each(func(i int, s *goquery.Selection) {
@@ -52,7 +29,7 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 		if !strings.Contains(link, "http") { return }
 
 		var re = regexp.MustCompile("&sa=.*")
-		result.Href, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
+		result.Url, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
 
 		short := href.Children().Last().Children().Last()
 		result.Short = short.Text()
