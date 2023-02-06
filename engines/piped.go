@@ -12,10 +12,10 @@ import (
 const pipedApiUrl = "https://pipedapi-libre.kavin.rocks"
 const pipedUrl = "https://piped.kavin.rocks"
 
-func FetchVideo(query string) ([]entities.Video, error) {
+func fetchSearch(query string, filter string) ([]entities.Video, error) {
 	var videos []entities.Video
 
-	uri := fmt.Sprintf("%s/search?q=%s&filter=video", pipedApiUrl, query)
+	uri := fmt.Sprintf("%s/search?q=%s&filter=%s", pipedApiUrl, query, filter)
 
 	var data map[string]interface{}
 	err := web.RequestJson(uri, &data)
@@ -35,4 +35,12 @@ func FetchVideo(query string) ([]entities.Video, error) {
 	}
 
 	return videos, nil
+}
+
+func FetchVideo(query string) ([]entities.Video, error) {
+	return fetchSearch(query, "video")
+}
+
+func FetchMusic(query string) ([]entities.Video, error) {
+	return fetchSearch(query, "music_songs")
 }

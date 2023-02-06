@@ -24,6 +24,7 @@ func Search(c *fiber.Ctx) error {
 	switch sort {
 	case "image": images, err = engines.FetchImage(query, page)
 	case "video": videos, err = engines.FetchVideo(query)
+	case "music": videos, err = engines.FetchMusic(query)
 	default: {
 		results, err = engines.FetchText(query, page)
 		sort = "text"
