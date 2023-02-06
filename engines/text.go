@@ -17,7 +17,7 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 
 	req := fasthttp.AcquireRequest()
 
-	uri := fmt.Sprintf("https://www.google.com/search?q=%s&start=%d", query, (page - 1) * 10)
+	uri := fmt.Sprintf("https://www.google.com/search?q=%s&start=%d&ie=utf8&oe=utf8", query, (page - 1) * 10)
 	req.SetRequestURI(uri)
 	req.Header.SetCookie("CONSENT", "YES+")
 	resp := fasthttp.AcquireResponse()
@@ -53,6 +53,9 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 
 		var re = regexp.MustCompile("&sa=.*")
 		result.Href, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
+
+		short := href.Children().Last().Children().Last()
+		result.Short = short.Text()
 
 		title := href.Children().First().Children().First().Children().First().Children().First()
 		result.Title = strings.TrimSpace(title.Text())
