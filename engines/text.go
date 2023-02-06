@@ -3,6 +3,7 @@ package engines
 import (
 	"bytes"
 	"fmt"
+	"net/url"
 	"regexp"
 	"strings"
 
@@ -46,12 +47,12 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 	doc.Find(".Gx5Zad").Each(func(i int, s *goquery.Selection) {
 		result := entities.Result{}
 		href := s.Children().First().Children().First()
-		url, _ := href.Attr("href")
+		link, _ := href.Attr("href")
 
-		if !strings.Contains(url, "http") { return }
+		if !strings.Contains(link, "http") { return }
 
 		var re = regexp.MustCompile("&sa=.*")
-		result.Href = re.ReplaceAllString(url[7:], "")
+		result.Href, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
 
 		title := href.Children().First().Children().First().Children().First().Children().First()
 		result.Title = strings.TrimSpace(title.Text())
