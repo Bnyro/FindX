@@ -9,7 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Search(c *fiber.Ctx) error {
+func Api(c *fiber.Ctx) error {
 	query := url.QueryEscape(c.Query("q", ""))
 	searchType := c.Query("type")
 	page, err := strconv.Atoi(c.Query("page", "1"))
@@ -35,12 +35,12 @@ func Search(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
-	return c.Render("results", fiber.Map {
-		"Query": query,
-		"Type": searchType,
-		"Page": page,
-		"Results": results,
-		"Images": images,
-		"Videos": videos,
+	return c.JSON(fiber.Map {
+		"query": query,
+		"type": searchType,
+		"page": page,
+		"results": results,
+		"images": images,
+		"videos": videos,
 	})
 }

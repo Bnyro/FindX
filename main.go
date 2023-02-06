@@ -24,6 +24,7 @@ func main() {
 	app.Static("/static", "./static")
 	app.Get("/", handlers.Home)
 	app.Get("/search", handlers.Search)
+	app.Get("/api", handlers.Api)
 
 	addr := flag.String("addr", ":8080", "address to listen on")
 	flag.Parse()
