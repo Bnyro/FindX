@@ -24,6 +24,24 @@
         <img id="search-icon" src="/static/favicon.svg" />
       </label>
     </form>
+    <section id="providers">
+      <a href="/search?q={{ .Query }}&type=text">
+        <img src="/static/text.svg" />
+        <span>Text</span>
+      </a>
+      <a href="/search?q={{ .Query }}&type=image">
+        <img src="/static/image.svg" />
+        <span>Image</span>
+      </a>
+      <a href="/search?q={{ .Query }}&type=video">
+        <img src="/static/video.svg" />
+        <span>Video</span>
+      </a>
+      <a href="/search?q={{ .Query }}&type=music">
+        <img src="/static/music.svg" />
+        <span>Music</span>
+      </a>
+    </section>
     <section id="results">
       {{ range .Results }}
       <a href="{{ .Url }}">

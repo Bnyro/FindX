@@ -8,6 +8,8 @@
   --foreground: #d6deeb;
   --surface: #1d3b53;
   --radius: 0.5rem;
+  --filter: invert(92%) sepia(13%) saturate(391%) hue-rotate(187deg)
+    brightness(97%) contrast(90%);
 }
 
 html {
@@ -135,12 +137,13 @@ img {
 .search-row-container {
   display: flex;
   flex-direction: row;
-  max-width: min(90vw, 35rem);
+  max-width: min(90vw, 40rem);
   padding: 0.4rem;
   background: var(--surface);
   border-radius: var(--radius);
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .search-submit {
@@ -219,4 +222,30 @@ img {
 
 #title #o-2 {
   color: #908caa;
+}
+
+#providers {
+  display: flex;
+  margin-top: 1rem;
+}
+
+#providers a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0 0.3rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+#providers img {
+  height: 1.5rem;
+  width: auto;
+  filter: var(--filter);
+}
+
+#providers span {
+  margin-left: 0.2rem;
+  font-weight: 700;
 }
