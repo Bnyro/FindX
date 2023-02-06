@@ -43,6 +43,16 @@
       </a>
     </section>
     <p>Fetched the results in {{ .TimeTaken }}</p>
+    {{ with .Wiki }} {{ if not (eq .Description "") }}
+    <section>
+      <a href="{{ .Url }}" class="wiki">
+        {{ if not (eq .Thumbnail "") }}
+        <img src="{{ .Thumbnail }}" />
+        {{ end }}
+        <p>{{ .Description }}</p>
+      </a>
+    </section>
+    {{ end }} {{ end }}
     <section id="results">
       {{ range .Results }}
       <a href="{{ .Url }}">

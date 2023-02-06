@@ -257,3 +257,20 @@ img {
   border-radius: var(--radius);
   background: var(--surface);
 }
+
+.wiki {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  display: flex;
+}
+
+.wiki img {
+  height: 10rem;
+}
+
+.wiki p {
+  margin-left: 20px;
+  height: 100%;
+  max-width: 30vw;
+}

@@ -25,6 +25,7 @@ func Search(c *fiber.Ctx) error {
 
 	if page < 1 { page = 1 }
 
+	var wiki entities.Wiki
 	var results []entities.Result
 	var images []entities.Image
 	var videos []entities.Video
@@ -33,6 +34,7 @@ func Search(c *fiber.Ctx) error {
 	case "video": videos, err = engines.FetchVideo(escapedQuery)
 	case "music": videos, err = engines.FetchMusic(escapedQuery)
 	default: {
+		wiki, _ = engines.FetchWiki(query)
 		results, err = engines.FetchText(escapedQuery, page)
 		searchType = "text"
 	}
@@ -51,6 +53,7 @@ func Search(c *fiber.Ctx) error {
 		"Prev": page - 1,
 		"Next": page + 1,
 		"TimeTaken": fmt.Sprintf("%s", timeTaken),
+		"Wiki": wiki,
 		"Results": results,
 		"Images": images,
 		"Videos": videos,
