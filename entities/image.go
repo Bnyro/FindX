@@ -1,8 +1,8 @@
 package entities
 
 type Image struct {
-	Url			string
-	Media		string
-	Thumbnail 	string
-	Title		string
+	Url			string	`json:"url"`
+	Media		string	`json:"media"`
+	Thumbnail 	string	`json:"thumbnail"`
+	Title		string	`json:"title"`
 }

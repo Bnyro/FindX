@@ -1,8 +1,8 @@
 package entities
 
 type Result struct {
-	Url		string
-	Short		string
-	Title 		string
-	Description string
+	Url			string 	`json:"url"`
+	Short		string	`json:"short"`
+	Title 		string	`json:"title"`
+	Description string	`json:"description"`
 }
