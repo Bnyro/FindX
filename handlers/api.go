@@ -13,7 +13,9 @@ import (
 func Api(c *fiber.Ctx) error {
 	start := time.Now()
 
-	query := url.QueryEscape(c.Query("q", ""))
+	query := c.Query("q", "")
+	escapedQuery := url.QueryEscape(query)
+
 	searchType := c.Query("type")
 	page, err := strconv.Atoi(c.Query("page", "1"))
 
@@ -25,11 +27,11 @@ func Api(c *fiber.Ctx) error {
 	var images []entities.Image
 	var videos []entities.Video
 	switch searchType {
-	case "image": images, err = engines.FetchImage(query, page)
-	case "video": videos, err = engines.FetchVideo(query)
-	case "music": videos, err = engines.FetchMusic(query)
+	case "image": images, err = engines.FetchImage(escapedQuery, page)
+	case "video": videos, err = engines.FetchVideo(escapedQuery)
+	case "music": videos, err = engines.FetchMusic(escapedQuery)
 	default: {
-		results, err = engines.FetchText(query, page)
+		results, err = engines.FetchText(escapedQuery, page)
 		searchType = "text"
 	}
 	}
