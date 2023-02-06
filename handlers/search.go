@@ -23,6 +23,7 @@ func Search(c *fiber.Ctx) error {
 	var videos []entities.Video
 	switch sort {
 	case "image": images, err = engines.FetchImage(query, page)
+	case "video": videos, err = engines.FetchVideo(query)
 	default: results, err = engines.FetchText(query, page)
 	}
 

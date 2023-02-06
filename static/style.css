@@ -75,6 +75,40 @@ img {
   width: 100%;
 }
 
+#videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#videos > a {
+  padding: 1rem;
+  margin: 0.5rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  width: min-content;
+}
+
+#videos img {
+  width: 25vw;
+  aspect-ratio: 16/9;
+}
+
+.thumbnail-container {
+  position: relative;
+}
+
+.thumbnail-container span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0.7rem 0.8rem;
+  border-radius: var(--radius);
+  padding: 0.3rem;
+  background-color: var(--surface);
+}
+
 .btm-container {
   width: 100%;
   display: flex;

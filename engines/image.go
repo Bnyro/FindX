@@ -8,18 +8,18 @@ import (
 	"github.com/bnyrogo/web"
 )
 
-const PER_PAGE = 20
+const resultsPerPage = 20
 
 func FetchImage(query string, page int) ([]entities.Image, error) {
 	var images []entities.Image
 	var data map[string]interface{}
-	offset := (page - 1) * PER_PAGE
+	offset := (page - 1) * resultsPerPage
 
-	if offset + PER_PAGE >= 250 {
+	if offset + resultsPerPage >= 250 {
 		return images, errors.New("Count + offset must be smaller than 250")
 	}
 
-	uri := fmt.Sprintf("https://api.qwant.com/v3/search/images?q=%s&offset=%d&locale=en_gb&count=%d", query, offset, PER_PAGE)
+	uri := fmt.Sprintf("https://api.qwant.com/v3/search/images?q=%s&offset=%d&locale=en_gb&count=%d", query, offset, resultsPerPage)
 	err := web.RequestJson(uri, &data)
 
 	if err != nil {

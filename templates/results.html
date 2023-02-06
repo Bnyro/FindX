@@ -27,6 +27,18 @@
       </div>
       {{ end }}
     </section>
+    <section id="videos">
+      {{ range .Videos }}
+      <a href="{{ .Url }}">
+        <span class="thumbnail-container">
+          <img src="{{ .Thumbnail }}" alt="" />
+          <span>{{ .DurationString }}</span>
+        </span>
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Uploader }} ⋅ {{ .UploadDate }} ⋅ {{ .ViewsString }}</p>
+      </a>
+      {{ end }}
+    </section>
     <div id="btm-container"></div>
   </body>
 </html>
