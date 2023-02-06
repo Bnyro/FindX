@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="92mm"
+   height="92mm"
+   viewBox="0 0 92 92"
+   version="1.1"
+   id="svg1057"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1061">
+    <filter
+       inkscape:label="Colorize"
+       inkscape:menu="Color"
+       inkscape:menu-tooltip="Render Cyan, Magenta and Yellow channels with a colorizable background"
+       style="color-interpolation-filters:sRGB;"
+       id="filter1961"
+       x="-0.057663361"
+       y="-0.058470644"
+       width="1.0576634"
+       height="1.0584706">
+      <feFlood
+         flood-color="rgb(255,255,255)"
+         result="result6"
+         flood-opacity="0"
+         id="feFlood1947" />
+      <feColorMatrix
+         result="result3"
+         values="0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 -1 0 0 1 0 "
+         in="SourceGraphic"
+         id="feColorMatrix1949" />
+      <feBlend
+         mode="multiply"
+         in2="result6"
+         result="result7"
+         in="result3"
+         id="feBlend1951" />
+      <feColorMatrix
+         result="result2"
+         in="SourceGraphic"
+         values="0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 -1 0 1 0 "
+         id="feColorMatrix1953" />
+      <feBlend
+         result="result4"
+         in="result2"
+         in2="result7"
+         mode="multiply"
+         id="feBlend1955" />
+      <feColorMatrix
+         result="result1"
+         values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 -1 1 0 "
+         in="SourceGraphic"
+         id="feColorMatrix1957" />
+      <feBlend
+         in2="result4"
+         mode="multiply"
+         result="fbSourceGraphic"
+         in="result1"
+         id="feBlend1959" />
+      <feColorMatrix
+         result="fbSourceGraphicAlpha"
+         in="fbSourceGraphic"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         id="feColorMatrix12888" />
+      <feComposite
+         in2="fbSourceGraphic"
+         id="feComposite12890"
+         operator="arithmetic"
+         k1="2.77556e-17"
+         k2="0.601753"
+         result="composite1"
+         in="fbSourceGraphic" />
+      <feColorMatrix
+         id="feColorMatrix12892"
+         in="composite1"
+         values="1"
+         type="saturate"
+         result="colormatrix1" />
+      <feFlood
+         id="feFlood12894"
+         flood-opacity="1"
+         flood-color="rgb(235,111,146)"
+         result="flood1" />
+      <feBlend
+         in2="colormatrix1"
+         id="feBlend12896"
+         in="flood1"
+         mode="multiply"
+         result="blend1" />
+      <feBlend
+         in2="blend1"
+         id="feBlend12898"
+         mode="screen"
+         result="blend2" />
+      <feColorMatrix
+         id="feColorMatrix12900"
+         in="blend2"
+         values="1"
+         type="saturate"
+         result="colormatrix2" />
+      <feComposite
+         in2="fbSourceGraphic"
+         id="feComposite12902"
+         in="colormatrix2"
+         operator="in"
+         k2="1"
+         result="composite2" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="namedview1059"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1676178"
+     inkscape:cx="173.85827"
+     inkscape:cy="171.71716"
+     inkscape:window-width="945"
+     inkscape:window-height="506"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1057" />
+  <g
+     transform="translate(-40.921 -17.417)"
+     id="g1055"
+     style="filter:url(#filter1961)">
+    <circle
+       cx="75.921"
+       cy="53.903"
+       r="30"
+       style="fill:none;fill-opacity:1;stroke:#3050ff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle1049" />
+    <path
+       d="M67.515 37.915a18 18 0 0 1 21.051 3.313 18 18 0 0 1 3.138 21.078"
+       style="fill:none;fill-opacity:1;stroke:#3050ff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1051" />
+    <rect
+       width="18.846"
+       height="39.963"
+       x="3.706"
+       y="122.09"
+       ry="0"
+       style="opacity:1;fill:#3050ff;fill-opacity:1;stroke:none;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="rotate(-46.235)"
+       id="rect1053" />
+  </g>
+</svg>

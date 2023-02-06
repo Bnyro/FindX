@@ -24,7 +24,10 @@ func Search(c *fiber.Ctx) error {
 	switch sort {
 	case "image": images, err = engines.FetchImage(query, page)
 	case "video": videos, err = engines.FetchVideo(query)
-	default: results, err = engines.FetchText(query, page)
+	default: {
+		results, err = engines.FetchText(query, page)
+		sort = "text"
+	}
 	}
 
 	if err != nil {
@@ -33,6 +36,7 @@ func Search(c *fiber.Ctx) error {
 
 	return c.Render("results", fiber.Map {
 		"Query": query,
+		"Type": sort,
 		"Page": page,
 		"Results": results,
 		"Images": images,

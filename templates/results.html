@@ -5,9 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/style.css" />
+    <link rel="icon" href="/static/favicon.svg" />
     <title>{{ .Query }}</title>
   </head>
   <body>
+    <form class="search-row-container" method="get" action="search">
+      <input
+        type="text"
+        name="q"
+        class="search-input search-row-input"
+        value="{{ .Query }}"
+        autofocus
+        required
+      />
+      <input type="text" value="{{ .Type }}" name="type" hidden />
+      <label>
+        <input type="submit" class="search-row-submit" value="Search" hidden />
+        <img id="search-icon" src="/static/favicon.svg" />
+      </label>
+    </form>
     <section id="results">
       {{ range .Results }}
       <a href="{{ .Url }}">
