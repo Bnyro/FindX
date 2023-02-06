@@ -78,6 +78,18 @@
       </a>
       {{ end }}
     </section>
-    <div id="btm-container"></div>
+    {{ if or (eq .Type "text") (eq .Type "image")}}
+    <div id="btm-container">
+      {{ if not (eq .Prev 0)}}
+      <a href="/search?q={{ .Query }}&page={{ .Prev }}&type={{ .Type }}"
+        >Previous</a
+      >
+      {{ end }} {{ if not (eq .Next 0)}}
+      <a href="/search?q={{ .Query }}&page={{ .Next }}&type={{ .Type }}"
+        >Next</a
+      >
+      {{ end }}
+    </div>
+    {{ end }}
   </body>
 </html>

@@ -23,6 +23,8 @@ func Search(c *fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusBadRequest)
 	}
 
+	if page < 1 { page = 1 }
+
 	var results []entities.Result
 	var images []entities.Image
 	var videos []entities.Video
@@ -46,6 +48,8 @@ func Search(c *fiber.Ctx) error {
 		"Query": query,
 		"Type": searchType,
 		"Page": page,
+		"Prev": page - 1,
+		"Next": page + 1,
 		"TimeTaken": fmt.Sprintf("%s", timeTaken),
 		"Results": results,
 		"Images": images,

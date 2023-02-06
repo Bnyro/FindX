@@ -242,10 +242,18 @@ img {
   font-weight: 700;
 }
 
-.btm-container {
+#btm-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  margin: 1rem 0;
+}
+
+#btm-container a {
+  padding: 0.7rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: var(--radius);
+  background: var(--surface);
 }
