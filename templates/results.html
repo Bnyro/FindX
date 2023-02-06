@@ -69,7 +69,11 @@
           <span>{{ .DurationString }}</span>
         </span>
         <h3>{{ .Title }}</h3>
+        {{ if not (eq .Views 0) }}
         <p>{{ .Uploader }} ⋅ {{ .UploadDate }} ⋅ {{ .ViewsString }}</p>
+        {{ else }}
+        <p>{{ .Uploader }}</p>
+        {{ end }}
       </a>
       {{ end }}
     </section>

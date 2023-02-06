@@ -111,14 +111,6 @@ img {
   background-color: var(--surface);
 }
 
-.btm-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-
 .search-container {
   display: flex;
   flex-direction: column;
@@ -248,4 +240,12 @@ img {
 #providers span {
   margin-left: 0.2rem;
   font-weight: 700;
+}
+
+.btm-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
