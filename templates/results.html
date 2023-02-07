@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/style.css" />
     <link rel="icon" href="/static/favicon.svg" />
-    <title>{{ .Query }}</title>
+    <title>{{ .query }}</title>
   </head>
   <body>
     <form class="search-row-container" method="get" action="search">
@@ -14,36 +14,36 @@
         type="text"
         name="q"
         class="search-input search-row-input"
-        value="{{ .Query }}"
+        value="{{ .query }}"
         autofocus
         required
       />
-      <input type="text" value="{{ .Type }}" name="type" hidden />
+      <input type="text" value="{{ .type }}" name="type" hidden />
       <label>
         <input type="submit" class="search-row-submit" value="Search" hidden />
         <img id="search-icon" src="/static/favicon.svg" />
       </label>
     </form>
     <section id="providers">
-      <a href="/search?q={{ .Query }}&type=text">
+      <a href="/search?q={{ .query }}&type=text">
         <img src="/static/text.svg" />
         <span>Text</span>
       </a>
-      <a href="/search?q={{ .Query }}&type=image">
+      <a href="/search?q={{ .query }}&type=image">
         <img src="/static/image.svg" />
         <span>Image</span>
       </a>
-      <a href="/search?q={{ .Query }}&type=video">
+      <a href="/search?q={{ .query }}&type=video">
         <img src="/static/video.svg" />
         <span>Video</span>
       </a>
-      <a href="/search?q={{ .Query }}&type=music">
+      <a href="/search?q={{ .query }}&type=music">
         <img src="/static/music.svg" />
         <span>Music</span>
       </a>
     </section>
-    <p>Fetched the results in {{ .TimeTaken }}</p>
-    {{ with .Wiki }} {{ if not (eq .Description "") }}
+    <p>Fetched the results in {{ .timeTaken }}</p>
+    {{ with .wiki }} {{ if not (eq .Description "") }}
     <section>
       <a href="{{ .Url }}" class="wiki">
         {{ if not (eq .Thumbnail "") }}
@@ -54,7 +54,7 @@
     </section>
     {{ end }} {{ end }}
     <section id="results">
-      {{ range .Results }}
+      {{ range .results }}
       <a href="{{ .Url }}">
         <p>{{ .Short }}</p>
         <h1>{{ .Title }}</h1>
@@ -63,7 +63,7 @@
       {{ end }}
     </section>
     <section id="images">
-      {{ range .Images }}
+      {{ range .images }}
       <div class="img-container">
         <a href="{{ .Media }}">
           <img src="{{ .Thumbnail }}" alt="{{ .Title }}" />
@@ -73,7 +73,7 @@
       {{ end }}
     </section>
     <section id="videos">
-      {{ range .Videos }}
+      {{ range .videos }}
       <a href="{{ .Url }}">
         <span class="thumbnail-container">
           <img src="{{ .Thumbnail }}" alt="" />
@@ -88,14 +88,14 @@
       </a>
       {{ end }}
     </section>
-    {{ if or (eq .Type "text") (eq .Type "image")}}
+    {{ if or (eq .type "text") (eq .type "image")}}
     <div id="btm-container">
-      {{ if not (eq .Prev 0)}}
-      <a href="/search?q={{ .Query }}&page={{ .Prev }}&type={{ .Type }}"
+      {{ if not (eq .prev 0)}}
+      <a href="/search?q={{ .query }}&page={{ .prev }}&type={{ .type }}"
         >Previous</a
       >
       {{ end }} {{ if not (eq .Next 0)}}
-      <a href="/search?q={{ .Query }}&page={{ .Next }}&type={{ .Type }}"
+      <a href="/search?q={{ .query }}&page={{ .next }}&type={{ .type }}"
         >Next</a
       >
       {{ end }}

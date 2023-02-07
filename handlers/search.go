@@ -12,6 +12,15 @@ import (
 )
 
 func Search(c *fiber.Ctx) error {
+	response, err := GenerateSearchMap(c)
+	if err != nil {
+		return c.SendStatus(500)
+	}
+
+	return c.Render("results", response)
+}
+
+func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 	start := time.Now()
 
 	query := c.Query("q", "")
@@ -20,7 +29,7 @@ func Search(c *fiber.Ctx) error {
 	page, err := strconv.Atoi(c.Query("page", "1"))
 
 	if err != nil {
-		return c.SendStatus(fiber.StatusBadRequest)
+		return nil, err
 	}
 
 	if page < 1 { page = 1 }
@@ -41,21 +50,21 @@ func Search(c *fiber.Ctx) error {
 	}
 
 	if err != nil {
-		return c.SendStatus(fiber.StatusInternalServerError)
+		return nil, err
 	}
 
 	timeTaken := time.Since(start)
 
-	return c.Render("results", fiber.Map {
-		"Query": query,
-		"Type": searchType,
-		"Page": page,
-		"Prev": page - 1,
-		"Next": page + 1,
-		"TimeTaken": fmt.Sprintf("%s", timeTaken),
-		"Wiki": wiki,
-		"Results": results,
-		"Images": images,
-		"Videos": videos,
-	})
+	return fiber.Map {
+		"query": query,
+		"type": searchType,
+		"page": page,
+		"prev": page - 1,
+		"next": page + 1,
+		"timeTaken": fmt.Sprintf("%s", timeTaken),
+		"wiki": wiki,
+		"results": results,
+		"images": images,
+		"videos": videos,
+	}, nil
 }
