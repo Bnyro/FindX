@@ -21,7 +21,7 @@ func Request(uri string) ([]byte, error) {
 
 	err := fasthttp.Do(req, resp)
 
-	if err != nil {
+	if err != nil || resp.StatusCode() == 404 {
 		return nil, err
 	}
 
