@@ -12,7 +12,6 @@ import (
 
 const wikiUrl = "https://en.wikipedia.org"
 
-
 func FetchWiki(query string) (entities.Wiki, error) {
 	filter := url.QueryEscape("extracts|pageimages")
 	q := url.QueryEscape(query)
@@ -30,16 +29,21 @@ func FetchWiki(query string) (entities.Wiki, error) {
 
 	pages := data["query"].(map[string]interface{})["pages"].(map[string]interface{})
 	for key, value := range pages {
-		if key == "-1" { break }
+		if key == "-1" {
+			break
+		}
 		entry := value.(map[string]interface{})
 		result.Description = utilities.TakeN(entry["extract"].(string), 350)
 		switch entry["thumbnail"].(type) {
-		case map[string]interface{}: result.Thumbnail = entry["thumbnail"].(map[string]interface{})["source"].(string)
+		case map[string]interface{}:
+			result.Thumbnail = entry["thumbnail"].(map[string]interface{})["source"].(string)
 		default:
 		}
 	}
 
-	if (result.Description == "") { return result, errors.New("Not found") }
+	if result.Description == "" {
+		return result, errors.New("Not found")
+	}
 
 	return result, nil
 }

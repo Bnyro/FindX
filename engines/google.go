@@ -14,7 +14,7 @@ import (
 func FetchText(query string, page int) ([]entities.Result, error) {
 	var results []entities.Result
 
-	uri := fmt.Sprintf("https://www.google.com/search?q=%s&start=%d&ie=utf8&oe=utf8", query, (page - 1) * 10)
+	uri := fmt.Sprintf("https://www.google.com/search?q=%s&start=%d&ie=utf8&oe=utf8", query, (page-1)*10)
 	doc, err := web.RequestHtml(uri)
 
 	if err != nil {
@@ -26,7 +26,9 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 		href := s.Children().First().Children().First()
 		link, _ := href.Attr("href")
 
-		if !strings.Contains(link, "http") { return }
+		if !strings.Contains(link, "http") {
+			return
+		}
 
 		var re = regexp.MustCompile("&sa=.*")
 		result.Url, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))

@@ -6,8 +6,8 @@ import (
 )
 
 func ParseUnixTime(unixTime uint64) string {
-  	t := time.Unix(int64(unixTime) / 1000, 0)
-    return t.Format(time.RFC822) 
+	t := time.Unix(int64(unixTime)/1000, 0)
+	return t.Format(time.RFC822)
 }
 
 func FmtDuration(seconds uint64) string {

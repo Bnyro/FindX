@@ -33,37 +33,46 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 		return nil, err
 	}
 
-	if page < 1 { page = 1 }
+	if page < 1 {
+		page = 1
+	}
 
 	var wiki entities.Wiki
 	var dict entities.Dict
 	var weather string
 	var results []entities.Result
 	var images []entities.Image
+	var code []entities.Stack
 	var videos []entities.Video
 	switch searchType {
-	case "image": images, err = engines.FetchImage(escapedQuery, page)
-	case "video": videos, err = engines.FetchVideo(escapedQuery)
-	case "music": videos, err = engines.FetchMusic(escapedQuery)
-	default: {
-		searchType = "text"
-		var wg sync.WaitGroup
-		wg.Add(3)
-		go func() {
-			defer wg.Done()
-			wiki, _ = engines.FetchWiki(query)
-		}()
-		go func() {
-			defer wg.Done()
-			dict, _ = engines.FetchDictionary(query)
-		}()
-		go func() {
-			defer wg.Done()
-			weather, _ = engines.FetchWeather(query)
-		}()
-		results, err = engines.FetchText(escapedQuery, page)
-		wg.Wait()
-	}
+	case "image":
+		images, err = engines.FetchImage(escapedQuery, page)
+	case "code":
+		code, err = engines.FetchCode(query, page)
+	case "video":
+		videos, err = engines.FetchVideo(escapedQuery)
+	case "music":
+		videos, err = engines.FetchMusic(escapedQuery)
+	default:
+		{
+			searchType = "text"
+			var wg sync.WaitGroup
+			wg.Add(3)
+			go func() {
+				defer wg.Done()
+				wiki, _ = engines.FetchWiki(query)
+			}()
+			go func() {
+				defer wg.Done()
+				dict, _ = engines.FetchDictionary(query)
+			}()
+			go func() {
+				defer wg.Done()
+				weather, _ = engines.FetchWeather(query)
+			}()
+			results, err = engines.FetchText(escapedQuery, page)
+			wg.Wait()
+		}
 	}
 
 	if err != nil {
@@ -72,18 +81,19 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 
 	timeTaken := time.Since(start)
 
-	return fiber.Map {
-		"query": query,
-		"type": searchType,
-		"page": page,
-		"prev": page - 1,
-		"next": page + 1,
+	return fiber.Map{
+		"query":     query,
+		"type":      searchType,
+		"page":      page,
+		"prev":      page - 1,
+		"next":      page + 1,
 		"timeTaken": fmt.Sprintf("%s", timeTaken),
-		"wiki": wiki,
-		"dict": dict,
-		"weather": weather,
-		"results": results,
-		"images": images,
-		"videos": videos,
+		"wiki":      wiki,
+		"dict":      dict,
+		"weather":   weather,
+		"results":   results,
+		"images":    images,
+		"code":		 code,
+		"videos":    videos,
 	}, nil
 }

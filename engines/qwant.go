@@ -15,7 +15,7 @@ func FetchImage(query string, page int) ([]entities.Image, error) {
 	var data map[string]interface{}
 	offset := (page - 1) * resultsPerPage
 
-	if offset + resultsPerPage >= 250 {
+	if offset+resultsPerPage >= 250 {
 		return images, errors.New("Count + offset must be smaller than 250")
 	}
 
@@ -36,6 +36,6 @@ func FetchImage(query string, page int) ([]entities.Image, error) {
 		image.Media = result["media"].(string)
 		images = append(images, image)
 	}
-	
+
 	return images, nil
 }
