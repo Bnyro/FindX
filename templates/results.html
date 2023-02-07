@@ -65,10 +65,21 @@
     {{ end }} {{ end }}
     <section id="results">
       {{ range .results }}
-      <a href="{{ .Url }}">
+      <a href="{{ .Url }}" class="container">
         <p>{{ .Short }}</p>
         <h1>{{ .Title }}</h1>
         <p>{{ .Description }}</p>
+      </a>
+      {{ end }}
+    </section>
+    <section id="code">
+      {{ range .code }}
+      <a href="{{ .Url }}" class="container">
+        <h3>{{ .Title }}</h3>
+        <p>
+          {{ .AnswerCount }}{{ if .IsAnswered }} ✔{{ end }} ⋅ {{
+          .CreationDateStr }} ⋅ {{ .ScoreStr }} / {{ .ViewCountStr }}
+        </p>
       </a>
       {{ end }}
     </section>
@@ -98,7 +109,7 @@
       </a>
       {{ end }}
     </section>
-    {{ if or (eq .type "text") (eq .type "image")}}
+    {{ if or (eq .type "text") (eq .type "image") (eq .type "code") }}
     <div id="btm-container">
       {{ if not (eq .prev 0)}}
       <a href="/search?q={{ .query }}&page={{ .prev }}&type={{ .type }}"

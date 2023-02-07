@@ -43,13 +43,13 @@ img {
   border-radius: var(--radius);
 }
 
-#results {
+#results, #code {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-#results a {
+.container {
   border-radius: 1rem;
   padding: 1rem;
   background-color: var(--surface);
