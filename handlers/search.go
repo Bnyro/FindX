@@ -15,37 +15,40 @@ import (
 )
 
 func Search(c *fiber.Ctx) error {
-	if utilities.IsBlank(c.Query("q")) {
+	query := c.Query("q", "")
+	searchType := c.Query("type")
+	page, err := strconv.Atoi(c.Query("page", "1"))
+
+	if err != nil {
+		return c.SendStatus(403)
+	}
+
+	if utilities.IsBlank(query) {
 		return c.Redirect("/")
 	}
 
-	response, err := GenerateSearchMap(c)
+	response, err := GenerateSearchMap(query, searchType, page)
 	if err != nil {
 		return c.Render("results", fiber.Map{
 			"error": err.Error(),
-			"query": c.Query("q", ""),
-			"page":  c.Query("page", "1"),
+			"query": query,
+			"page":  page,
+			"type":  searchType,
 		})
 	}
 
 	return c.Render("results", response)
 }
 
-func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
+func GenerateSearchMap(query string, searchType string, page int) (map[string]interface{}, error) {
 	start := time.Now()
-
-	query := c.Query("q", "")
-	escapedQuery := url.QueryEscape(query)
-	searchType := c.Query("type")
-	page, err := strconv.Atoi(c.Query("page", "1"))
-
-	if err != nil {
-		return nil, err
-	}
+	var err error
 
 	if page < 1 {
 		page = 1
 	}
+
+	escapedQuery := url.QueryEscape(query)
 
 	var wiki entities.Wiki
 	var dict entities.Dict
