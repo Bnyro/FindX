@@ -25,7 +25,7 @@ func FormatDuration(seconds uint64) string {
 	}
 }
 
-func FormatHumanReadable(b uint64) string {
+func FormatHumanReadable(b int64) string {
 	const unit = 1000
 	if b < unit {
 		return fmt.Sprintf("%d", b)

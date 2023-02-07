@@ -31,7 +31,7 @@ func fetchSearch(query string, filter string) ([]entities.Video, error) {
 		videos[i].Url = pipedUrl + videos[i].Url
 		videos[i].DurationString = utilities.FormatDuration(videos[i].Duration)
 		videos[i].UploadDate = utilities.FormatDate(videos[i].Uploaded)
-		videos[i].ViewsString = utilities.FormatHumanReadable(videos[i].Views)
+		videos[i].ViewsString = utilities.FormatHumanReadable(int64(videos[i].Views))
 	}
 
 	return videos, nil

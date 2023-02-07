@@ -61,7 +61,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 	case "image":
 		images, err = engines.FetchImage(escapedQuery, page)
 	case "code":
-		code, err = engines.FetchCode(query, page)
+		code, err = engines.FetchCode(escapedQuery, page)
 	case "video":
 		videos, err = engines.FetchVideo(escapedQuery)
 	case "music":
