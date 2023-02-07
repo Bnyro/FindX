@@ -5,12 +5,12 @@ import (
 	"time"
 )
 
-func ParseUnixTime(unixTime uint64) string {
+func FormatDate(unixTime uint64) string {
 	t := time.Unix(int64(unixTime)/1000, 0)
 	return t.Format(time.RFC822)
 }
 
-func FmtDuration(seconds uint64) string {
+func FormatDuration(seconds uint64) string {
 	timeString := fmt.Sprintf("%ds", seconds)
 	d, _ := time.ParseDuration(timeString)
 	h := d / time.Hour
@@ -25,7 +25,7 @@ func FmtDuration(seconds uint64) string {
 	}
 }
 
-func HumanReadable(b uint64) string {
+func FormatHumanReadable(b uint64) string {
 	const unit = 1000
 	if b < unit {
 		return fmt.Sprintf("%d", b)
@@ -36,11 +36,4 @@ func HumanReadable(b uint64) string {
 		exp++
 	}
 	return fmt.Sprintf("%.1f %c", float64(b)/float64(div), "kMBTQ"[exp])
-}
-
-func TakeN(text string, count int) string {
-	if len(text) < count {
-		return text
-	}
-	return text[:count] + " ..."
 }

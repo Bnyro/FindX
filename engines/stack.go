@@ -33,9 +33,9 @@ func FetchCode(query string, page int) ([]entities.Stack, error) {
 
 	for i := range stacks {
 		stacks[i].Title = html.UnescapeString(stacks[i].Title)
-		stacks[i].ScoreStr = utilities.HumanReadable(uint64(stacks[i].Score))
-		stacks[i].ViewCountStr = utilities.HumanReadable(stacks[i].ViewCount)
-		stacks[i].CreationDateStr = utilities.ParseUnixTime(stacks[i].CreationDate * 1000)
+		stacks[i].ScoreStr = utilities.FormatHumanReadable(uint64(stacks[i].Score))
+		stacks[i].ViewCountStr = utilities.FormatHumanReadable(stacks[i].ViewCount)
+		stacks[i].CreationDateStr = utilities.FormatDate(stacks[i].CreationDate * 1000)
 	}
 
 	return stacks, nil

@@ -10,10 +10,15 @@ import (
 
 	"github.com/bnyrogo/engines"
 	"github.com/bnyrogo/entities"
+	"github.com/bnyrogo/utilities"
 	"github.com/gofiber/fiber/v2"
 )
 
 func Search(c *fiber.Ctx) error {
+	if utilities.IsBlank(c.Query("q")) {
+		return c.Redirect("/")
+	}
+
 	response, err := GenerateSearchMap(c)
 	if err != nil {
 		return c.Render("results", fiber.Map{
