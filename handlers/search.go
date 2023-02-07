@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/url"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/bnyrogo/engines"
@@ -43,9 +44,15 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 	case "video": videos, err = engines.FetchVideo(escapedQuery)
 	case "music": videos, err = engines.FetchMusic(escapedQuery)
 	default: {
-		wiki, _ = engines.FetchWiki(query)
-		results, err = engines.FetchText(escapedQuery, page)
 		searchType = "text"
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			wiki, _ = engines.FetchWiki(query)
+		}()
+		results, err = engines.FetchText(escapedQuery, page)
+		wg.Wait()
 	}
 	}
 
