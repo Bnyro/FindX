@@ -23,6 +23,8 @@ func Search(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Render("results", fiber.Map{
 			"error": err.Error(),
+			"query": c.Query("q", ""),
+			"page":  c.Query("page", "1"),
 		})
 	}
 
