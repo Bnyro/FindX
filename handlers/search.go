@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"html/template"
 	"net/url"
 	"strconv"
 	"sync"
@@ -90,10 +91,10 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 		"timeTaken": fmt.Sprintf("%s", timeTaken),
 		"wiki":      wiki,
 		"dict":      dict,
-		"weather":   weather,
+		"weather":   template.HTML(weather),
 		"results":   results,
 		"images":    images,
-		"code":		 code,
+		"code":      code,
 		"videos":    videos,
 	}, nil
 }

@@ -276,3 +276,7 @@ img {
 .dict div {
   font-style: italic;
 }
+
+#weather {
+  margin: 1rem;
+}

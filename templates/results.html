@@ -62,7 +62,9 @@
         <p>{{ .Description }}</p>
       </a>
     </section>
-    {{ end }} {{ end }}
+    {{ end }} {{ end }} {{ if not (eq .weather "") }}
+    <section id="weather" class="container">{{ .weather }}</section>
+    {{ end }}
     <section id="results">
       {{ range .results }}
       <a href="{{ .Url }}" class="container">
