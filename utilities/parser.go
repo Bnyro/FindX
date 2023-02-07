@@ -37,3 +37,10 @@ func HumanReadable(b uint64) string {
 	}
 	return fmt.Sprintf("%.1f %c", float64(b)/float64(div), "kMBTQ"[exp])
 }
+
+func TakeN(text string, count int) string {
+	if len(text) < count {
+		return text
+	}
+	return text[:count] + " ..."
+}

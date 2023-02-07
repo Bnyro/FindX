@@ -6,6 +6,7 @@ import (
 	"net/url"
 
 	"github.com/bnyrogo/entities"
+	"github.com/bnyrogo/utilities"
 	"github.com/bnyrogo/web"
 )
 
@@ -31,7 +32,7 @@ func FetchWiki(query string) (entities.Wiki, error) {
 	for key, value := range pages {
 		if key == "-1" { break }
 		entry := value.(map[string]interface{})
-		result.Description = entry["extract"].(string)
+		result.Description = utilities.TakeN(entry["extract"].(string), 350)
 		switch entry["thumbnail"].(type) {
 		case map[string]interface{}: result.Thumbnail = entry["thumbnail"].(map[string]interface{})["source"].(string)
 		default:
