@@ -46,8 +46,14 @@
         <span>Music</span>
       </a>
     </section>
+    {{ if .timeTaken }}
     <p>Fetched the results in {{ .timeTaken }}</p>
-    {{ with .dict }} {{ if not (eq .Definition "") }}
+    {{ end }} {{ if .error }}
+    <section id="error">
+      <h1>404</h1>
+      <p>{{ .error }}</p>
+    </section>
+    {{ else }} {{ with .dict }} {{ if not (eq .Definition "") }}
     <section class="dict">
       <span>{{ .PartOfSpeech }}</span>
       <p>{{ .Definition }}</p>
@@ -123,6 +129,6 @@
       >
       {{ end }}
     </div>
-    {{ end }}
+    {{ end }} {{ end }}
   </body>
 </html>

@@ -280,3 +280,17 @@ img {
 #weather {
   margin: 1rem;
 }
+
+#error {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#error h1 {
+  font-weight: 700;
+  font-size: 12rem;
+  margin: 0;
+}

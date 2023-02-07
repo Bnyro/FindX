@@ -16,7 +16,9 @@ import (
 func Search(c *fiber.Ctx) error {
 	response, err := GenerateSearchMap(c)
 	if err != nil {
-		return c.SendStatus(500)
+		return c.Render("results", fiber.Map{
+			"error": err.Error(),
+		})
 	}
 
 	return c.Render("results", response)
