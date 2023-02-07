@@ -251,3 +251,28 @@ img {
   height: 100%;
   max-width: 30vw;
 }
+
+.dict {
+  margin: 1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1rem;
+  min-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dict span {
+  color: var(--accent);
+}
+
+.dict p {
+  font-size: large;
+  font-weight: 700;
+  margin: 0.3rem 0;
+}
+
+.dict div {
+  font-style: italic;
+}

@@ -36,6 +36,7 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 	if page < 1 { page = 1 }
 
 	var wiki entities.Wiki
+	var dict entities.Dict
 	var results []entities.Result
 	var images []entities.Image
 	var videos []entities.Video
@@ -46,10 +47,14 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 	default: {
 		searchType = "text"
 		var wg sync.WaitGroup
-		wg.Add(1)
+		wg.Add(2)
 		go func() {
 			defer wg.Done()
 			wiki, _ = engines.FetchWiki(query)
+		}()
+		go func() {
+			defer wg.Done()
+			dict, _ = engines.FetchDictionary(query)
 		}()
 		results, err = engines.FetchText(escapedQuery, page)
 		wg.Wait()
@@ -70,6 +75,7 @@ func GenerateSearchMap(c *fiber.Ctx) (map[string]interface{}, error) {
 		"next": page + 1,
 		"timeTaken": fmt.Sprintf("%s", timeTaken),
 		"wiki": wiki,
+		"dict": dict,
 		"results": results,
 		"images": images,
 		"videos": videos,

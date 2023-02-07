@@ -27,7 +27,7 @@
     <section id="providers">
       <a href="/search?q={{ .query }}&type=text">
         <img src="/static/text.svg" />
-        <span>Text</span>
+        <span>General</span>
       </a>
       <a href="/search?q={{ .query }}&type=image">
         <img src="/static/image.svg" />
@@ -43,8 +43,14 @@
       </a>
     </section>
     <p>Fetched the results in {{ .timeTaken }}</p>
-    {{ with .wiki }} {{ if not (eq .Description "") }}
-    <section>
+    {{ with .dict }} {{ if not (eq .Definition "") }}
+    <section class="dict">
+      <span>{{ .PartOfSpeech }}</span>
+      <p>{{ .Definition }}</p>
+      <div>{{ .Example }}</div>
+    </section>
+    {{ end }} {{ end }} {{ with .wiki }} {{ if not (eq .Description "") }}
+    <section class="wiki">
       <a href="{{ .Url }}" class="wiki">
         {{ if not (eq .Thumbnail "") }}
         <img src="{{ .Thumbnail }}" />
