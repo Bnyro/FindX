@@ -235,45 +235,52 @@ img {
   background: var(--surface);
 }
 
-.wiki {
-  padding: 1rem;
-  border-radius: var(--radius);
-  background: var(--surface);
+#details {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: min-content;
 }
 
-.wiki img {
+#details div {
+  height: 100%;
+  max-width: 25vw;
+}
+
+#wiki {
+  display: flex;
+  align-items: center;
+}
+
+#wiki img {
   height: 10rem;
 }
 
-.wiki p {
+#wiki p {
   margin-left: 20px;
   height: 100%;
   max-width: 30vw;
 }
 
-.dict {
+#dict {
   margin: 1rem;
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 1rem;
   min-width: 30vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.dict span {
+#dict span {
   color: var(--accent);
 }
 
-.dict p {
+#dict p {
   font-size: large;
   font-weight: 700;
   margin: 0.3rem 0;
 }
 
-.dict div {
+#dict div {
   font-style: italic;
 }
 

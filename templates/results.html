@@ -52,25 +52,26 @@
     <section id="error">
       <h1>404</h1>
       <p>{{ .error }}</p>
-    </section>
-    {{ else }} {{ with .dict }} {{ if not (eq .Definition "") }}
-    <section class="dict">
+    </section id="general">
+    {{ else }} 
+    <section id="details">
+      {{ with .dict }} {{ if not (eq .Definition "") }}
+    <div id="dict" class="container">
       <span>{{ .PartOfSpeech }}</span>
       <p>{{ .Definition }}</p>
       <div>{{ .Example }}</div>
-    </section>
+    </div>
     {{ end }} {{ end }} {{ with .wiki }} {{ if not (eq .Description "") }}
-    <section class="wiki">
-      <a href="{{ .Url }}" class="wiki">
-        {{ if not (eq .Thumbnail "") }}
-        <img src="{{ .Thumbnail }}" />
-        {{ end }}
-        <p>{{ .Description }}</p>
-      </a>
-    </section>
+    <a href="{{ .Url }}" id="wiki" class="container">
+      {{ if not (eq .Thumbnail "") }}
+      <img src="{{ .Thumbnail }}" />
+      {{ end }}
+      <p>{{ .Description }}</p>
+    </a>
     {{ end }} {{ end }} {{ if not (eq .weather "") }}
-    <section id="weather" class="container">{{ .weather }}</section>
+    <div id="weather" class="container">{{ .weather }}</div>
     {{ end }}
+    </section>
     <section id="results">
       {{ range .results }}
       <a href="{{ .Url }}" class="container">
