@@ -64,20 +64,20 @@
     </section id="general">
     {{ else }} 
     <section id="details">
-      {{ with .dict }} {{ if not (eq .Definition "") }}
+      {{ with .dict }} {{ if (ne .Definition "") }}
     <div id="dict" class="container">
       <span>{{ .PartOfSpeech }}</span>
       <p>{{ .Definition }}</p>
       <div>{{ .Example }}</div>
     </div>
-    {{ end }} {{ end }} {{ with .wiki }} {{ if not (eq .Description "") }}
+    {{ end }} {{ end }} {{ with .wiki }} {{ if (ne .Description "") }}
     <a href="{{ .Url }}" id="wiki" class="container">
-      {{ if not (eq .Thumbnail "") }}
+      {{ if (ne .Thumbnail "") }}
       <img src="{{ .Thumbnail }}" />
       {{ end }}
       <p>{{ .Description }}</p>
     </a>
-    {{ end }} {{ end }} {{ if not (eq .weather "") }}
+    {{ end }} {{ end }} {{ if (ne .weather "") }}
     <div id="weather" class="container">{{ .weather }}</div>
     {{ end }}
     </section>
@@ -115,11 +115,11 @@
       {{ range .videos }}
       <a href="{{ .Url }}">
         <span class="thumbnail-container">
-          <img src="{{ .Thumbnail }}" alt="" />
+          <img src="{{ .Thumbnail }}" class="{{ if (eq .Views 0) }}song{{ end }}" />
           <span>{{ .DurationString }}</span>
         </span>
         <h3>{{ .Title }}</h3>
-        {{ if not (eq .Views 0) }}
+        {{ if (ne .Views 0) }}
         <p>{{ .Uploader }} ⋅ {{ .UploadDate }} ⋅ {{ .ViewsString }}</p>
         {{ else }}
         <p>{{ .Uploader }}</p>
@@ -129,7 +129,7 @@
     </section>
     {{ if or (eq .type "text") (eq .type "image") (eq .type "code") }}
     <div id="btm-container">
-      {{ if not (eq .page 1) }}
+      {{ if (ne .page 1) }}
       <a href="/search?q={{ .query }}&page={{ template "dec" .page }}&type={{ .type }}"
         >Previous</a
       >
@@ -141,3 +141,4 @@
     {{ end }} {{ end }}
   </body>
 </html>
+ 

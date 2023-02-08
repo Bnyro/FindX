@@ -99,6 +99,10 @@ img {
   aspect-ratio: 16/9;
 }
 
+#videos img.song {
+  aspect-ratio: 1/1;
+}
+
 .thumbnail-container {
   position: relative;
 }
