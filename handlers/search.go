@@ -84,7 +84,8 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 				weather, _ = engines.FetchWeather(query)
 			}()
 			results, err = engines.FetchText(escapedQuery, page)
-			wg.Wait()
+			// wait at most one additional second for the additional results
+			utilities.WaitTimeout(&wg, 1*time.Second)
 		}
 	}
 
