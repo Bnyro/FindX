@@ -9,7 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/style.css" />
     <link rel="icon" href="/static/favicon.svg" />
-    <title>{{ .query }}</title>
+    <link
+      title="FindX"
+      type="application/opensearchdescription+xml"
+      rel="search"
+      href="/static/opensearch.xml"
+    />
+    <title>{{ .query }} - FindX</title>
   </head>
   <body>
     <form class="search-row-container" method="get" action="search">

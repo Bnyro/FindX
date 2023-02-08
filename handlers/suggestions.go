@@ -8,5 +8,7 @@ import (
 func Suggest(c *fiber.Ctx) error {
 	query := c.Query("q")
 	results := engines.GetSuggestions(query)
-	return c.JSON(results)
+	return c.JSON([]any{
+		query, results,
+	})
 }
