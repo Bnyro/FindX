@@ -25,6 +25,7 @@ func main() {
 	app.Get("/", handlers.Home)
 	app.Get("/search", handlers.Search)
 	app.Get("/api", handlers.Api)
+	app.Get("/ac", handlers.Suggest)
 
 	addr := flag.String("addr", ":8080", "address to listen on")
 	flag.Parse()
