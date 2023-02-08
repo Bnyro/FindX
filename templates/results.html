@@ -1,3 +1,6 @@
+{{ define "inc" }}{{ len (printf "%*s " . "") }}{{ end -}}
+{{ define "dec" }}{{ len (slice (printf "%*s" . "") 1) }}{{ end -}}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -120,15 +123,14 @@
     </section>
     {{ if or (eq .type "text") (eq .type "image") (eq .type "code") }}
     <div id="btm-container">
-      {{ if not (eq .prev 0)}}
-      <a href="/search?q={{ .query }}&page={{ .prev }}&type={{ .type }}"
+      {{ if not (eq .page 1) }}
+      <a href="/search?q={{ .query }}&page={{ template "dec" .page }}&type={{ .type }}"
         >Previous</a
       >
-      {{ end }} {{ if not (eq .Next 0)}}
-      <a href="/search?q={{ .query }}&page={{ .next }}&type={{ .type }}"
+      {{ end }}
+      <a href="/search?q={{ .query }}&page={{ template "inc" .page }}&type={{ .type }}"
         >Next</a
       >
-      {{ end }}
     </div>
     {{ end }} {{ end }}
   </body>

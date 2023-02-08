@@ -98,8 +98,6 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 		"query":     query,
 		"type":      searchType,
 		"page":      page,
-		"prev":      page - 1,
-		"next":      page + 1,
 		"timeTaken": fmt.Sprintf("%s", timeTaken),
 		"wiki":      wiki,
 		"dict":      dict,
