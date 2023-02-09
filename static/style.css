@@ -28,6 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 90vh;
+  padding: 0 10vw;
 }
 
 a {
@@ -95,12 +96,13 @@ img {
 }
 
 #videos img {
-  width: 25vw;
+  width: 20vw;
   aspect-ratio: 16/9;
 }
 
 #videos img.song {
   aspect-ratio: 1/1;
+  width: 15vw;
 }
 
 .thumbnail-container {
