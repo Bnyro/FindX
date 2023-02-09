@@ -70,19 +70,24 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 		{
 			searchType = "text"
 			var wg sync.WaitGroup
-			wg.Add(3)
-			go func() {
-				defer wg.Done()
-				wiki, _ = engines.FetchWiki(query)
-			}()
-			go func() {
-				defer wg.Done()
-				dict, _ = engines.FetchDictionary(query)
-			}()
-			go func() {
-				defer wg.Done()
-				weather, _ = engines.FetchWeather(query)
-			}()
+
+			// only show meta results on first page
+			if page == 1 {
+				wg.Add(3)
+				go func() {
+					defer wg.Done()
+					wiki, _ = engines.FetchWiki(query)
+				}()
+				go func() {
+					defer wg.Done()
+					dict, _ = engines.FetchDictionary(query)
+				}()
+				go func() {
+					defer wg.Done()
+					weather, _ = engines.FetchWeather(query)
+				}()
+			}
+
 			results, err = engines.FetchText(escapedQuery, page)
 			// wait at most one additional second for the additional results
 			utilities.WaitTimeout(&wg, 1*time.Second)
