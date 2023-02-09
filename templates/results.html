@@ -19,6 +19,7 @@
   </head>
   <body>
     <form class="search-row-container" method="get" action="search">
+      <a href="/"><h1 class="title">Find<span>X</span></h1></a>
       <input
         type="text"
         name="q"
@@ -34,29 +35,29 @@
       </label>
     </form>
     <section id="providers">
-      <a href="/search?q={{ .query }}&type=text">
+      <a href="/search?q={{ .query }}&type=text" class="{{ if (eq .type "text") }}selected{{ end }}">
         <img src="/static/text.svg" />
         <span>General</span>
       </a>
-      <a href="/search?q={{ .query }}&type=image">
+      <a href="/search?q={{ .query }}&type=image" class="{{ if (eq .type "image") }}selected{{ end }}">
         <img src="/static/image.svg" />
         <span>Image</span>
       </a>
-      <a href="/search?q={{ .query }}&type=code">
+      <a href="/search?q={{ .query }}&type=code" class="{{ if (eq .type "code") }}selected{{ end }}">
         <img src="/static/code.svg" />
         <span>Code</span>
       </a>
-      <a href="/search?q={{ .query }}&type=video">
+      <a href="/search?q={{ .query }}&type=video" class="{{ if (eq .type "video") }}selected{{ end }}">
         <img src="/static/video.svg" />
         <span>Video</span>
       </a>
-      <a href="/search?q={{ .query }}&type=music">
+      <a href="/search?q={{ .query }}&type=music" class="{{ if (eq .type "music") }}selected{{ end }}">
         <img src="/static/music.svg" />
         <span>Music</span>
       </a>
     </section>
     {{ if .timeTaken }}
-    <p>Fetched the results in {{ .timeTaken }}</p>
+    <p id="timetaken">Fetched the results in {{ .timeTaken }}</p>
     {{ end }} {{ if .error }}
     <section id="error">
       <h1>404</h1>
