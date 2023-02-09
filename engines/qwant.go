@@ -8,7 +8,7 @@ import (
 	"github.com/bnyrogo/web"
 )
 
-const resultsPerPage = 20
+const resultsPerPage = 25
 
 func FetchImage(query string, page int) ([]entities.Image, error) {
 	var images []entities.Image

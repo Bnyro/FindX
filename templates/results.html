@@ -64,19 +64,20 @@
     </section id="general">
     {{ else }} 
     <section id="details">
+      {{ with .wiki }} {{ if (ne .Description "") }}
+      <a href="{{ .Url }}" id="wiki" class="container">
+        {{ if (ne .Thumbnail "") }}
+        <img src="{{ .Thumbnail }}" />
+        {{ end }}
+        <p>{{ .Description }}</p>
+      </a>
+      {{ end }} {{ end }} 
       {{ with .dict }} {{ if (ne .Definition "") }}
     <div id="dict" class="container">
       <span>{{ .PartOfSpeech }}</span>
       <p>{{ .Definition }}</p>
       <div>{{ .Example }}</div>
     </div>
-    {{ end }} {{ end }} {{ with .wiki }} {{ if (ne .Description "") }}
-    <a href="{{ .Url }}" id="wiki" class="container">
-      {{ if (ne .Thumbnail "") }}
-      <img src="{{ .Thumbnail }}" />
-      {{ end }}
-      <p>{{ .Description }}</p>
-    </a>
     {{ end }} {{ end }} {{ if (ne .weather "") }}
     <div id="weather" class="container">{{ .weather }}</div>
     {{ end }}
