@@ -55,6 +55,7 @@ img {
   padding: 1rem;
   background-color: var(--surface);
   margin: 0.5rem;
+  max-width: 95vw;
 }
 
 #images {
@@ -81,9 +82,26 @@ img {
   transform-origin: center;
 }
 
-.img-title {
+#images .img-title {
   margin-top: 0.3rem;
   width: 100%;
+}
+
+#news > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+}
+
+#news div {
+  flex-grow: 1;
+}
+
+#news img {
+  height: 7rem;
+  width: auto;
 }
 
 #videos {
@@ -356,6 +374,9 @@ img {
   #wiki img {
     width: 80vw;
     height: auto;
+  }
+  #news img {
+    display: none;
   }
   #images img {
     width: 80vw;

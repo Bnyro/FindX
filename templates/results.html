@@ -43,6 +43,10 @@
         <img src="/static/image.svg" />
         <span>Image</span>
       </a>
+      <a href="/search?q={{ .query }}&type=news" class="{{ if (eq .type "news") }}selected{{ end }}">
+        <img src="/static/news.svg" />
+        <span>News</span>
+      </a>
       <a href="/search?q={{ .query }}&type=code" class="{{ if (eq .type "code") }}selected{{ end }}">
         <img src="/static/code.svg" />
         <span>Code</span>
@@ -87,19 +91,20 @@
       {{ range .results }}
       <a href="{{ .Url }}" class="container">
         <p>{{ .Short }}</p>
-        <h1>{{ .Title }}</h1>
+        <h2>{{ .Title }}</h2>
         <p>{{ .Description }}</p>
       </a>
       {{ end }}
     </section>
-    <section id="code">
-      {{ range .code }}
+    <section id="news">
+      {{ range .news }}
       <a href="{{ .Url }}" class="container">
-        <h3>{{ .Title }}</h3>
-        <p>
-          {{ .AnswerCount }}{{ if .IsAnswered }} ✔{{ end }} ⋅ {{
-          .CreationDateStr }} ⋅ {{ .ScoreStr }} / {{ .ViewCountStr }}
-        </p>
+        <div>
+          <p>{{ .Source }} ⋅ {{ .UploadDate }}</p>
+          <h2>{{ .Title }}</h2>
+          <p>{{ .Description }}</p>
+        </div>
+        {{ if .Thumbnail }} <img src="{{ .Thumbnail }}" alt="{{ .Title }}"> {{ end }}
       </a>
       {{ end }}
     </section>
@@ -111,6 +116,17 @@
         </a>
         <a class="img-title" href="{{ .Url }}">{{ .Title }}</a>
       </div>
+      {{ end }}
+    </section>
+    <section id="code">
+      {{ range .code }}
+      <a href="{{ .Url }}" class="container">
+        <h3>{{ .Title }}</h3>
+        <p>
+          {{ .AnswerCount }}{{ if .IsAnswered }} ✔{{ end }} ⋅ {{
+          .CreationDateStr }} ⋅ {{ .ScoreStr }} / {{ .ViewCountStr }}
+        </p>
+      </a>
       {{ end }}
     </section>
     <section id="videos">

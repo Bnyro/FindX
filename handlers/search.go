@@ -55,11 +55,14 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 	var weather string
 	var results []entities.Result
 	var images []entities.Image
+	var news []entities.News
 	var code []entities.Stack
 	var videos []entities.Video
 	switch searchType {
 	case "image":
 		images, err = engines.FetchImage(escapedQuery, page)
+	case "news":
+		news, err = engines.FetchNews(escapedQuery)
 	case "code":
 		code, err = engines.FetchCode(escapedQuery, page)
 	case "video":
@@ -110,6 +113,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 		"weather":   template.HTML(weather),
 		"results":   results,
 		"images":    images,
+		"news":      news,
 		"code":      code,
 		"videos":    videos,
 	}, nil
