@@ -7,12 +7,13 @@ import (
 )
 
 func FetchWeather(query string) (string, error) {
-	uri := fmt.Sprintf("https://wttr.in/%s?H?0", query)
-	resp, _, err := web.Request(uri)
+	uri := fmt.Sprintf("https://wttr.in/%s?T?0", query)
+	doc, err := web.RequestHtml(uri)
 
 	if err != nil {
 		return "", err
 	}
 
-	return string(resp), nil
+	weather, _ := doc.Find("pre").First().Html()
+	return weather, nil
 }

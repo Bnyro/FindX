@@ -80,7 +80,7 @@
       <div>{{ .Example }}</div>
     </div>
     {{ end }} {{ end }} {{ if (ne .weather "") }}
-    <div id="weather" class="container">{{ .weather }}</div>
+    <div id="weather" class="container"><pre>{{ .weather }}</pre></div>
     {{ end }}
     </section>
     <section id="results">
