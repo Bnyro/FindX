@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/bnyrogo/entities"
-	"github.com/bnyrogo/utilities"
-	"github.com/bnyrogo/web"
+	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/utilities"
+	"github.com/bnyro/findx/web"
 )
 
 const pipedApiUrl = "https://pipedapi-libre.kavin.rocks"

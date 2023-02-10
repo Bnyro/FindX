@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/bnyrogo/entities"
-	"github.com/bnyrogo/utilities"
-	"github.com/bnyrogo/web"
+	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/utilities"
+	"github.com/bnyro/findx/web"
 )
 
 func FetchNews(query string) ([]entities.News, error) {

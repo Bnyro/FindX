@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/bnyrogo/engines"
+	"github.com/bnyro/findx/engines"
 	"github.com/gofiber/fiber/v2"
 )
 

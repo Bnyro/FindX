@@ -1,4 +1,4 @@
-module github.com/bnyrogo
+module github.com/bnyro/findx
 
 go 1.19
 

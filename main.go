@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/bnyrogo/handlers"
+	"github.com/bnyro/findx/handlers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/template/html"

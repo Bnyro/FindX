@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/bnyrogo/entities"
-	"github.com/bnyrogo/web"
+	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/web"
 )
 
 func FetchText(query string, page int) ([]entities.Result, error) {

@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bnyrogo/engines"
-	"github.com/bnyrogo/entities"
-	"github.com/bnyrogo/utilities"
+	"github.com/bnyro/findx/engines"
+	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/utilities"
 	"github.com/gofiber/fiber/v2"
 )
 

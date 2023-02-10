@@ -3,7 +3,7 @@ package handlers
 import (
 	"strconv"
 
-	"github.com/bnyrogo/utilities"
+	"github.com/bnyro/findx/utilities"
 	"github.com/gofiber/fiber/v2"
 )
 

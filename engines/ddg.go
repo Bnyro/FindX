@@ -3,7 +3,7 @@ package engines
 import (
 	"fmt"
 
-	"github.com/bnyrogo/web"
+	"github.com/bnyro/findx/web"
 )
 
 func GetSuggestions(query string) []string {

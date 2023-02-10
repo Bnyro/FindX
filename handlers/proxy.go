@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/bnyrogo/utilities"
-	"github.com/bnyrogo/web"
+	"github.com/bnyro/findx/utilities"
+	"github.com/bnyro/findx/web"
 	"github.com/gofiber/fiber/v2"
 )
 
