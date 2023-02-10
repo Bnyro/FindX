@@ -28,7 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  padding: 0 10vw;
+  padding: 0 3vw;
 }
 
 a {
@@ -47,7 +47,7 @@ img {
 #results, #code {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  max-width: 90vw;
 }
 
 .container {
@@ -72,7 +72,13 @@ img {
 }
 
 #images img {
-  height: 20rem;
+  height: min(50vh, 18rem);
+  transition: 200ms all ease-in-out;
+}
+
+#images img:hover {
+  transform: scale(1.05);
+  transform-origin: center;
 }
 
 .img-title {
@@ -92,17 +98,16 @@ img {
   margin: 0.5rem;
   background: var(--surface);
   border-radius: var(--radius);
-  width: min-content;
+  width: min(20rem, 80vw);
 }
 
 #videos img {
-  width: 20vw;
+  width: 100%;
   aspect-ratio: 16/9;
 }
 
 #videos img.song {
   aspect-ratio: 1/1;
-  width: 15vw;
 }
 
 .thumbnail-container {
@@ -208,6 +213,9 @@ img {
 
 #providers {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   margin-top: 1rem;
 }
 
@@ -216,7 +224,7 @@ img {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  margin: 0 0.3rem;
+  margin: 0.3rem;
   border-radius: var(--radius);
   background: var(--surface);
 }
@@ -277,9 +285,8 @@ img {
 }
 
 #wiki p {
-  margin-left: 20px;
-  height: 100%;
-  max-width: 30vw;
+  margin: 10px;
+  max-width: 25rem;
 }
 
 #dict {
@@ -324,4 +331,34 @@ img {
 
 #timetaken {
   margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 968px) {
+  .search-row-container {
+    margin-top: 4rem;
+  }
+  #brand {
+    position: absolute;
+    margin: 0.7rem;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+  #brand .title {
+    font-size: 2rem;
+  }
+  .search-row-input {
+    max-width: 66vw;
+  }
+  #wiki {
+    flex-direction: column;
+  }
+  #wiki img {
+    width: 80vw;
+    height: auto;
+  }
+  #images img {
+    width: 80vw;
+    height: auto;
+  }
 }
