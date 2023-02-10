@@ -36,7 +36,8 @@ func FetchWiki(query string) (entities.Wiki, error) {
 		result.Description = utilities.TakeN(entry["extract"].(string), 350)
 		switch entry["thumbnail"].(type) {
 		case map[string]interface{}:
-			result.Thumbnail = entry["thumbnail"].(map[string]interface{})["source"].(string)
+			thumbnail := entry["thumbnail"].(map[string]interface{})["source"].(string)
+			result.Thumbnail = utilities.RewriteProxied(thumbnail)
 		default:
 		}
 	}

@@ -32,6 +32,7 @@ func fetchSearch(query string, filter string) ([]entities.Video, error) {
 		videos[i].DurationString = utilities.FormatDuration(videos[i].Duration)
 		videos[i].UploadDate = utilities.FormatDate(videos[i].Uploaded)
 		videos[i].ViewsString = utilities.FormatHumanReadable(int64(videos[i].Views))
+		videos[i].Thumbnail = utilities.RewriteProxied(videos[i].Thumbnail)
 	}
 
 	return videos, nil

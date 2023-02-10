@@ -10,34 +10,36 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-func Request(uri string) ([]byte, error) {
+func Request(uri string) ([]byte, []byte, error) {
 	req := fasthttp.AcquireRequest()
 
 	req.SetRequestURI(uri)
 	req.Header.SetCookie("CONSENT", "YES+")
 	req.Header.SetUserAgent(uuid.NewString())
 	resp := fasthttp.AcquireResponse()
-    defer fasthttp.ReleaseResponse(resp)
+	defer fasthttp.ReleaseResponse(resp)
 
 	err := fasthttp.Do(req, resp)
 
 	if err != nil || resp.StatusCode() == 404 {
-		return nil, err
+		return nil, nil, err
 	}
 
-	contentEncoding := resp.Header.Peek("Content-Encoding")
-    var body []byte
-    if bytes.EqualFold(contentEncoding, []byte("gzip")) {
-        body, _ = resp.BodyGunzip()
-    } else {
-        body = resp.Body()
-    }
+	contentType := resp.Header.ContentType()
 
-	return body, nil
+	contentEncoding := resp.Header.Peek("Content-Encoding")
+	var body []byte
+	if bytes.EqualFold(contentEncoding, []byte("gzip")) {
+		body, _ = resp.BodyGunzip()
+	} else {
+		body = resp.Body()
+	}
+
+	return body, contentType, nil
 }
 
 func RequestJson(uri string, v any) error {
-	body, err := Request(uri)
+	body, _, err := Request(uri)
 
 	if err != nil {
 		return err
@@ -49,14 +51,14 @@ func RequestJson(uri string, v any) error {
 }
 
 func RequestHtml(uri string) (*goquery.Document, error) {
-	body, err := Request(uri)
+	body, _, err := Request(uri)
 
 	if err != nil {
 		return nil, err
 	}
 
 	reader := strings.NewReader(string(body))
-    doc, err := goquery.NewDocumentFromReader(reader)
+	doc, err := goquery.NewDocumentFromReader(reader)
 
 	if err != nil {
 		return nil, err

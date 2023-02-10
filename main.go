@@ -26,6 +26,7 @@ func main() {
 	app.Get("/search", handlers.Search)
 	app.Get("/api", handlers.Api)
 	app.Get("/ac", handlers.Suggest)
+	app.Get("/proxy", handlers.Proxy)
 
 	addr := flag.String("addr", ":8080", "address to listen on")
 	flag.Parse()

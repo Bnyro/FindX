@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/bnyrogo/entities"
+	"github.com/bnyrogo/utilities"
 	"github.com/bnyrogo/web"
 )
 
@@ -32,7 +33,7 @@ func FetchImage(query string, page int) ([]entities.Image, error) {
 		image := entities.Image{}
 		image.Title = result["title"].(string)
 		image.Url = result["url"].(string)
-		image.Thumbnail = result["thumbnail"].(string)
+		image.Thumbnail = utilities.RewriteProxied(result["thumbnail"].(string))
 		image.Media = result["media"].(string)
 		images = append(images, image)
 	}
