@@ -1,8 +1,10 @@
 package web
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/bnyro/findx/utilities"
 	"github.com/goccy/go-json"
 )
 
@@ -17,4 +19,17 @@ func WriteJsonStatus(w http.ResponseWriter, data interface{}, statusCode int) {
 
 func WriteJson(w http.ResponseWriter, data interface{}) {
 	WriteJsonStatus(w, data, http.StatusOK)
+}
+
+func Host(r *http.Request) string {
+	host := r.Host
+	forwardedHost := r.Header.Get("X-Forwarded-Host")
+	if !utilities.IsBlank(forwardedHost) {
+		return forwardedHost
+	}
+	proto := r.Header.Get("X-Forwarded-Proto")
+	if utilities.IsBlank(proto) {
+		proto = "http"
+	}
+	return fmt.Sprintf("%s://%s", proto, host)
 }

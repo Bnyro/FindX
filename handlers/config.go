@@ -21,6 +21,6 @@ func Config(w http.ResponseWriter, r *http.Request) {
 }
 
 func Opensearch(w http.ResponseWriter, r *http.Request) {
-	descr := strings.Replace(opensearchBody, "{{baseUrl}}", r.URL.Host, -1)
+	descr := strings.Replace(opensearchBody, "{{baseUrl}}", web.Host(r), -1)
 	w.Write([]byte(descr))
 }
