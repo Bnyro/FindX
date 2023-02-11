@@ -75,7 +75,7 @@ func gUnzipData(data []byte) (resData []byte, err error) {
 	var resB bytes.Buffer
 	_, err = resB.ReadFrom(r)
 	if err != nil {
-		return
+		return nil, err
 	}
 
 	resData = resB.Bytes()

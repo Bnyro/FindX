@@ -9,7 +9,7 @@ import (
 	"github.com/bnyro/findx/web"
 )
 
-const pipedApiUrl = "https://pipedapi-libre.kavin.rocks"
+const pipedApiUrl = "https://pipedapi.kavin.rocks"
 const ytUrl = "https://www.youtube.com"
 
 func fetchSearch(query string, filter string) ([]entities.Video, error) {
