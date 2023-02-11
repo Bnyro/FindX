@@ -1,25 +1,26 @@
 package handlers
 
 import (
+	"net/http"
 	"strings"
 
 	_ "embed"
 
 	"github.com/bnyro/findx/config"
-	"github.com/gofiber/fiber/v2"
+	"github.com/bnyro/findx/web"
 )
 
 //go:embed opensearch.xml
 var opensearchBody string
 
-func Config(c *fiber.Ctx) error {
-	return c.JSON(fiber.Map{
+func Config(w http.ResponseWriter, r *http.Request) {
+	web.WriteJson(w, web.Map{
 		"proxy":     *config.Proxy,
 		"redirects": config.Redirects,
 	})
 }
 
-func Opensearch(c *fiber.Ctx) error {
-	descr := strings.Replace(opensearchBody, "{{baseUrl}}", c.BaseURL(), -1)
-	return c.Send([]byte(descr))
+func Opensearch(w http.ResponseWriter, r *http.Request) {
+	descr := strings.Replace(opensearchBody, "{{baseUrl}}", r.URL.Host, -1)
+	w.Write([]byte(descr))
 }

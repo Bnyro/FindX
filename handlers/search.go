@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"html/template"
+	"net/http"
 	"net/url"
 	"strconv"
 	"sync"
@@ -11,33 +12,38 @@ import (
 	"github.com/bnyro/findx/engines"
 	"github.com/bnyro/findx/entities"
 	"github.com/bnyro/findx/utilities"
+	"github.com/bnyro/findx/web"
 	"github.com/gofiber/fiber/v2"
 )
 
-func Search(c *fiber.Ctx) error {
-	query := c.Query("q", "")
-	searchType := c.Query("type")
-	page, err := strconv.Atoi(c.Query("page", "1"))
-
-	if err != nil {
-		return c.SendStatus(403)
+func Search(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query().Get("q")
+	searchType := r.URL.Query().Get("type")
+	pageQuery := r.URL.Query().Get("page")
+	page := 1
+	if !utilities.IsBlank(pageQuery) {
+		page, _ = strconv.Atoi(pageQuery)
 	}
 
 	if utilities.IsBlank(query) {
-		return c.Redirect("/")
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
 	}
 
 	response, err := GenerateSearchMap(query, searchType, page)
 	if err != nil {
-		return c.Render("results", fiber.Map{
+		fmt.Println(err)
+		response = web.Map{
 			"error": err.Error(),
 			"query": query,
 			"page":  page,
 			"type":  searchType,
-		})
+		}
 	}
 
-	return c.Render("results", response)
+	tmpl, err := template.ParseFiles("templates/results.html")
+
+	tmpl.Execute(w, response)
 }
 
 func GenerateSearchMap(query string, searchType string, page int) (map[string]interface{}, error) {

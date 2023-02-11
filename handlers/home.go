@@ -1,7 +1,11 @@
 package handlers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"html/template"
+	"net/http"
+)
 
-func Home(c *fiber.Ctx) error {
-	return c.Render("home", nil)
+func Home(w http.ResponseWriter, r *http.Request) {
+	tmpl, _ := template.ParseFiles("templates/home.html")
+	tmpl.Execute(w, nil)
 }

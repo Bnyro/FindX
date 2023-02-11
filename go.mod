@@ -9,7 +9,9 @@ require github.com/andybalholm/cascadia v1.3.1 // indirect
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/gofiber/template v1.7.4
+	github.com/go-chi/chi/v5 v5.0.8
+	github.com/go-chi/cors v1.2.1
+	github.com/goccy/go-json v0.10.0
 	github.com/google/uuid v1.3.0
 	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect

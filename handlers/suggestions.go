@@ -1,14 +1,16 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/bnyro/findx/engines"
-	"github.com/gofiber/fiber/v2"
+	"github.com/bnyro/findx/web"
 )
 
-func Suggest(c *fiber.Ctx) error {
-	query := c.Query("q")
+func Suggest(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query().Get("q")
 	results := engines.GetSuggestions(query)
-	return c.JSON([]any{
+	web.WriteJson(w, []any{
 		query, results,
 	})
 }

@@ -1,26 +1,29 @@
 package handlers
 
 import (
+	"net/http"
 	"strconv"
 
 	"github.com/bnyro/findx/utilities"
-	"github.com/gofiber/fiber/v2"
+	"github.com/bnyro/findx/web"
 )
 
-func Api(c *fiber.Ctx) error {
-	query := c.Query("q", "")
-	searchType := c.Query("type")
-	page, err := strconv.Atoi(c.Query("page", "1"))
+func Api(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query().Get("q")
+	searchType := r.URL.Query().Get("type")
+	page, err := strconv.Atoi(r.URL.Query().Get("page"))
 
 	if utilities.IsBlank(query) {
-		return c.SendStatus(400)
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
 	response, err := GenerateSearchMap(query, searchType, page)
 
 	if err != nil {
-		return c.SendStatus(500)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 
-	return c.JSON(response)
+	web.WriteJson(w, response)
 }

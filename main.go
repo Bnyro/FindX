@@ -1,13 +1,16 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"net/http"
+	"os"
+	"path/filepath"
 
 	"github.com/bnyro/findx/config"
 	"github.com/bnyro/findx/handlers"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/gofiber/template/html"
+	"github.com/bnyro/findx/web"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/cors"
 )
 
 var Main string
@@ -15,25 +18,22 @@ var Main string
 func main() {
 	config.Init()
 
-	engine := html.New("./templates", ".html")
+	app := chi.NewRouter()
 
-	app := fiber.New(
-		fiber.Config{
-			Views: engine,
-		},
-	)
-
-	app.Use(cors.New())
+	app.Use(cors.AllowAll().Handler)
 
 	app.Get("/", handlers.Home)
 	app.Get("/search", handlers.Search)
 	app.Get("/api", handlers.Api)
 	app.Get("/ac", handlers.Suggest)
 
-	app.Static("/static", "./static")
+	workDir, _ := os.Getwd()
+	filesDir := http.Dir(filepath.Join(workDir, "static"))
+	web.FileServer(app, "/static", filesDir)
 	app.Get("/proxy", handlers.Proxy)
 	app.Get("/config", handlers.Config)
 	app.Get("/opensearch.xml", handlers.Opensearch)
 
-	log.Fatal(app.Listen(*config.Addr))
+	fmt.Printf("Listening on: %s\n", *config.Addr)
+	http.ListenAndServe(*config.Addr, app)
 }

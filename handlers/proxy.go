@@ -1,24 +1,27 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/bnyro/findx/utilities"
 	"github.com/bnyro/findx/web"
-	"github.com/gofiber/fiber/v2"
 )
 
-func Proxy(c *fiber.Ctx) error {
-	uri := c.Query("url")
+func Proxy(w http.ResponseWriter, r *http.Request) {
+	uri := r.URL.Query().Get("url")
 
 	if utilities.IsBlank(uri) {
-		return c.SendStatus(fiber.StatusBadRequest)
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
 	body, contentType, err := web.Request(uri)
 
 	if err != nil {
-		return c.SendStatus(fiber.StatusNotFound)
+		w.WriteHeader(http.StatusNotFound)
+		return
 	}
 
-	c.Set("Content-Type", string(contentType))
-	return c.Send(body)
+	w.Header().Set("Content-Type", string(contentType))
+	w.Write(body)
 }
