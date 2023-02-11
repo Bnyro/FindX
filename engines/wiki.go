@@ -18,7 +18,7 @@ func FetchWiki(query string) (entities.Wiki, error) {
 	q := url.QueryEscape(query)
 	uri := fmt.Sprintf("%s/w/api.php?format=json&action=query&prop=%s&exintro&explaintext&redirects=1&pithumbsize=500&titles=%s", wikiUrl, filter, q)
 	result := entities.Wiki{
-		Url: uri,
+		Url: utilities.Redirect(fmt.Sprintf("%s/wiki/%s", wikiUrl, query)),
 	}
 
 	var data map[string]interface{}

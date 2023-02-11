@@ -24,7 +24,8 @@ func FetchNews(query string) ([]entities.News, error) {
 		entry := entities.News{}
 		entry.Title = s.Find(".snippet-title").Text()
 		entry.Description = s.Find(".snippet-description").Text()
-		entry.Url, _ = s.Find(".result-header").Attr("href")
+		url, _ := s.Find(".result-header").Attr("href")
+		entry.Url = utilities.Redirect(url)
 		entry.Source = s.Find(".netloc").Text()
 		entry.UploadDate = s.Find(".snippet-url").Children().Last().Text()
 		thumbnail, _ := s.Find(".thumb").Attr("src")

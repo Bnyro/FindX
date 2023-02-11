@@ -10,7 +10,7 @@ import (
 )
 
 const pipedApiUrl = "https://pipedapi-libre.kavin.rocks"
-const pipedUrl = "https://piped.kavin.rocks"
+const ytUrl = "https://www.youtube.com"
 
 func fetchSearch(query string, filter string) ([]entities.Video, error) {
 	var videos []entities.Video
@@ -28,7 +28,7 @@ func fetchSearch(query string, filter string) ([]entities.Video, error) {
 	json.Unmarshal(jsonVids, &videos)
 
 	for i := range videos {
-		videos[i].Url = pipedUrl + videos[i].Url
+		videos[i].Url = utilities.Redirect(ytUrl + videos[i].Url)
 		videos[i].DurationString = utilities.FormatDuration(videos[i].Duration)
 		videos[i].UploadDate = utilities.FormatDate(videos[i].Uploaded)
 		videos[i].ViewsString = utilities.FormatHumanReadable(int64(videos[i].Views))

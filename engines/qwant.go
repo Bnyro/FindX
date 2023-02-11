@@ -32,7 +32,7 @@ func FetchImage(query string, page int) ([]entities.Image, error) {
 		result := res.(map[string]interface{})
 		image := entities.Image{}
 		image.Title = result["title"].(string)
-		image.Url = result["url"].(string)
+		image.Url = utilities.Redirect(result["url"].(string))
 		image.Thumbnail = utilities.RewriteProxied(result["thumbnail"].(string))
 		image.Media = result["media"].(string)
 		images = append(images, image)

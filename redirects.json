@@ -1,0 +1,26 @@
+[
+    {
+        "source": "www.youtube.com",
+        "target": "piped.video"
+    },
+    {
+        "source": "stackoverflow.com",
+        "target": "code.whatever.social"
+    },
+    {
+        "source": "reddit.com",
+        "target": "libreddit.de"
+    },
+    {
+        "source": "en.wikipedia.org",
+        "target": "wikiless.org"
+    },
+    {
+        "source": "twitter.com",
+        "target": "nitter.net"
+    },
+    {
+        "source": "www.quora.com",
+        "target": "quetre.iket.me"
+    }
+]

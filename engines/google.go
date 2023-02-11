@@ -8,6 +8,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/utilities"
 	"github.com/bnyro/findx/web"
 )
 
@@ -31,7 +32,8 @@ func FetchText(query string, page int) ([]entities.Result, error) {
 		}
 
 		var re = regexp.MustCompile("&sa=.*")
-		result.Url, _ = url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
+		url, _ := url.QueryUnescape(re.ReplaceAllString(link[7:], ""))
+		result.Url = utilities.Redirect(url)
 
 		short := href.Children().Last().Children().Last()
 		result.Short = short.Text()

@@ -32,6 +32,7 @@ func FetchCode(query string, page int) ([]entities.Stack, error) {
 	}
 
 	for i := range stacks {
+		stacks[i].Url = utilities.Redirect(stacks[i].Url)
 		stacks[i].Title = html.UnescapeString(stacks[i].Title)
 		stacks[i].ScoreStr = utilities.FormatHumanReadable(int64(stacks[i].Score))
 		stacks[i].ViewCountStr = utilities.FormatHumanReadable(int64(stacks[i].ViewCount))

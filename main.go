@@ -2,8 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
-	"strings"
 
 	"github.com/bnyro/findx/config"
 	"github.com/bnyro/findx/handlers"
@@ -25,19 +23,15 @@ func main() {
 
 	app.Use(cors.New())
 
-	app.Static("/static", "./static")
 	app.Get("/", handlers.Home)
 	app.Get("/search", handlers.Search)
 	app.Get("/api", handlers.Api)
 	app.Get("/ac", handlers.Suggest)
+
+	app.Static("/static", "./static")
 	app.Get("/proxy", handlers.Proxy)
-
-	app.Get("/opensearch.xml", func(c *fiber.Ctx) error {
-		bytes, _ := os.ReadFile("./opensearch.xml")
-		descr := strings.Replace(string(bytes), "{{baseUrl}}", c.BaseURL(), -1)
-
-		return c.Send([]byte(descr))
-	})
+	app.Get("/config", handlers.Config)
+	app.Get("/opensearch.xml", handlers.Opensearch)
 
 	log.Fatal(app.Listen(*config.Addr))
 }
