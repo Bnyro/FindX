@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"strings"
 
 	"github.com/bnyro/findx/entities"
 	"github.com/bnyro/findx/utilities"
@@ -33,17 +34,20 @@ func FetchWiki(query string) (entities.Wiki, error) {
 			break
 		}
 		entry := value.(map[string]interface{})
-		result.Description = utilities.TakeN(entry["extract"].(string), 350)
+		description := utilities.TakeN(entry["extract"].(string), 350)
+
+		if description == "" || strings.Contains(description, "may refer to:") {
+			return result, errors.New("Not found")
+		}
+
+		result.Description = description
 		switch entry["thumbnail"].(type) {
 		case map[string]interface{}:
 			thumbnail := entry["thumbnail"].(map[string]interface{})["source"].(string)
 			result.Thumbnail = utilities.RewriteProxied(thumbnail)
 		default:
 		}
-	}
-
-	if result.Description == "" {
-		return result, errors.New("Not found")
+		break
 	}
 
 	return result, nil
