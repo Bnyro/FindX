@@ -13,7 +13,6 @@ import (
 	"github.com/bnyro/findx/entities"
 	"github.com/bnyro/findx/utilities"
 	"github.com/bnyro/findx/web"
-	"github.com/gofiber/fiber/v2"
 )
 
 func Search(w http.ResponseWriter, r *http.Request) {
@@ -109,7 +108,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 
 	timeTaken := time.Since(start)
 
-	return fiber.Map{
+	return web.Map{
 		"query":     query,
 		"type":      searchType,
 		"page":      page,

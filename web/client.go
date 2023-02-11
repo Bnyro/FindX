@@ -2,40 +2,37 @@ package web
 
 import (
 	"bytes"
+	"compress/gzip"
 	"encoding/json"
+	"io"
+	"io/ioutil"
+	"net/http"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/google/uuid"
-	"github.com/valyala/fasthttp"
 )
 
 func Request(uri string) ([]byte, []byte, error) {
-	req := fasthttp.AcquireRequest()
+	client := *http.DefaultClient
+	req, _ := http.NewRequest("GET", uri, nil)
+	req.AddCookie(&http.Cookie{Name: "CONSENT", Value: "YES+"})
+	req.Header.Set("User-Agent", "Mozilla/5.0")
+	resp, err := client.Do(req)
 
-	req.SetRequestURI(uri)
-	req.Header.SetCookie("CONSENT", "YES+")
-	req.Header.SetUserAgent(uuid.NewString())
-	resp := fasthttp.AcquireResponse()
-	defer fasthttp.ReleaseResponse(resp)
-
-	err := fasthttp.Do(req, resp)
-
-	if err != nil || resp.StatusCode() == 404 {
+	if err != nil || resp.StatusCode == 404 {
 		return nil, nil, err
 	}
 
-	contentType := resp.Header.ContentType()
+	contentType := resp.Header.Get("Content-Type")
 
-	contentEncoding := resp.Header.Peek("Content-Encoding")
-	var body []byte
-	if bytes.EqualFold(contentEncoding, []byte("gzip")) {
-		body, _ = resp.BodyGunzip()
-	} else {
-		body = resp.Body()
+	contentEncoding := resp.Header.Get("Content-Encoding")
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	if bytes.EqualFold([]byte(contentEncoding), []byte("gzip")) {
+		body, _ = gUnzipData(body)
 	}
 
-	return body, contentType, nil
+	return body, []byte(contentType), nil
 }
 
 func RequestJson(uri string, v any) error {
@@ -64,4 +61,24 @@ func RequestHtml(uri string) (*goquery.Document, error) {
 		return nil, err
 	}
 	return doc, nil
+}
+
+func gUnzipData(data []byte) (resData []byte, err error) {
+	b := bytes.NewBuffer(data)
+
+	var r io.Reader
+	r, err = gzip.NewReader(b)
+	if err != nil {
+		return
+	}
+
+	var resB bytes.Buffer
+	_, err = resB.ReadFrom(r)
+	if err != nil {
+		return
+	}
+
+	resData = resB.Bytes()
+
+	return
 }
