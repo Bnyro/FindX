@@ -1,11 +1,11 @@
 package web
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
 	"github.com/bnyro/findx/utilities"
-	"github.com/goccy/go-json"
 )
 
 type Map map[string]interface{}
