@@ -10,6 +10,8 @@ import (
 	"github.com/gofiber/template/html"
 )
 
+var Main string
+
 func main() {
 	config.Init()
 

@@ -1,12 +1,16 @@
 package handlers
 
 import (
-	"os"
 	"strings"
+
+	_ "embed"
 
 	"github.com/bnyro/findx/config"
 	"github.com/gofiber/fiber/v2"
 )
+
+//go:embed opensearch.xml
+var opensearchBody string
 
 func Config(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
@@ -16,7 +20,6 @@ func Config(c *fiber.Ctx) error {
 }
 
 func Opensearch(c *fiber.Ctx) error {
-	bytes, _ := os.ReadFile("./opensearch.xml")
-	descr := strings.Replace(string(bytes), "{{baseUrl}}", c.BaseURL(), -1)
+	descr := strings.Replace(opensearchBody, "{{baseUrl}}", c.BaseURL(), -1)
 	return c.Send([]byte(descr))
 }
