@@ -1,0 +1,7 @@
+version: "1.0"
+services:
+  app:
+    container_name: FindX
+    build: .
+    ports:
+      - "8070:8080"
