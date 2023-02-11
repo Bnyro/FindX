@@ -39,7 +39,7 @@ func fetchSearch(query string, filter string) ([]entities.Video, error) {
 }
 
 func FetchVideo(query string) ([]entities.Video, error) {
-	return fetchSearch(query, "video")
+	return fetchSearch(query, "videos")
 }
 
 func FetchMusic(query string) ([]entities.Video, error) {
