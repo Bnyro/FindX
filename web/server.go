@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/bnyro/findx/static"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -23,7 +24,7 @@ func FileServer(r chi.Router, path string, root http.FileSystem) {
 	r.Get(path, func(w http.ResponseWriter, r *http.Request) {
 		rctx := chi.RouteContext(r.Context())
 		pathPrefix := strings.TrimSuffix(rctx.RoutePattern(), "/*")
-		fs := http.StripPrefix(pathPrefix, http.FileServer(root))
+		fs := http.StripPrefix(pathPrefix, http.FileServer(http.FS(static.Static)))
 		fs.ServeHTTP(w, r)
 	})
 }

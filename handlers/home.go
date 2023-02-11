@@ -1,11 +1,11 @@
 package handlers
 
 import (
-	"html/template"
 	"net/http"
+
+	"github.com/bnyro/findx/templates"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	tmpl, _ := template.ParseFiles("templates/home.html")
-	tmpl.Execute(w, nil)
+	templates.Template("home").Execute(w, nil)
 }

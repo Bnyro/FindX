@@ -11,6 +11,7 @@ import (
 
 	"github.com/bnyro/findx/engines"
 	"github.com/bnyro/findx/entities"
+	"github.com/bnyro/findx/templates"
 	"github.com/bnyro/findx/utilities"
 	"github.com/bnyro/findx/web"
 )
@@ -40,9 +41,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	tmpl, err := template.ParseFiles("templates/results.html")
-
-	tmpl.Execute(w, response)
+	templates.Template("results").Execute(w, response)
 }
 
 func GenerateSearchMap(query string, searchType string, page int) (map[string]interface{}, error) {
