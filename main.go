@@ -14,7 +14,6 @@ import (
 
 func main() {
 	addr := flag.String("addr", ":8080", "address to listen on")
-	osaddr := flag.String("opensearch", "http://localhost:8080", "opensearch public url")
 
 	engine := html.New("./templates", ".html")
 
@@ -35,7 +34,7 @@ func main() {
 
 	app.Get("/opensearch.xml", func(c *fiber.Ctx) error {
 		bytes, _ := os.ReadFile("./opensearch.xml")
-		descr := strings.Replace(string(bytes), "{{baseUrl}}", *osaddr, -1)
+		descr := strings.Replace(string(bytes), "{{baseUrl}}", c.BaseURL(), -1)
 
 		return c.Send([]byte(descr))
 	})
