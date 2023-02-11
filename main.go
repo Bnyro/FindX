@@ -1,11 +1,11 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"os"
 	"strings"
 
+	"github.com/bnyro/findx/config"
 	"github.com/bnyro/findx/handlers"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	addr := flag.String("addr", ":8080", "address to listen on")
+	config.Init()
 
 	engine := html.New("./templates", ".html")
 
@@ -39,7 +39,5 @@ func main() {
 		return c.Send([]byte(descr))
 	})
 
-	flag.Parse()
-
-	log.Fatal(app.Listen(*addr))
+	log.Fatal(app.Listen(*config.Addr))
 }
