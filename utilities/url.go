@@ -17,7 +17,11 @@ func RewriteProxied(uri string) string {
 }
 
 func Redirect(uri string) string {
-	parsedUrl, _ := url.Parse(uri)
+	parsedUrl, err := url.Parse(uri)
+
+	if err != nil {
+		return uri
+	}
 
 	for _, redirect := range config.Redirects {
 		if parsedUrl.Hostname() == redirect.Source {

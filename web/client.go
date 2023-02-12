@@ -14,7 +14,12 @@ import (
 
 func Request(uri string) ([]byte, []byte, error) {
 	client := *http.DefaultClient
-	req, _ := http.NewRequest("GET", uri, nil)
+	req, err := http.NewRequest("GET", uri, nil)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
 	req.AddCookie(&http.Cookie{Name: "CONSENT", Value: "YES+"})
 	req.Header.Set("User-Agent", "Mozilla/5.0")
 	resp, err := client.Do(req)
@@ -25,9 +30,13 @@ func Request(uri string) ([]byte, []byte, error) {
 
 	contentType := resp.Header.Get("Content-Type")
 
-	contentEncoding := resp.Header.Get("Content-Encoding")
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 
+	if err != nil {
+		return nil, nil, err
+	}
+
+	contentEncoding := resp.Header.Get("Content-Encoding")
 	if bytes.EqualFold([]byte(contentEncoding), []byte("gzip")) {
 		body, _ = gUnzipData(body)
 	}
