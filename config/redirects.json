@@ -4,6 +4,10 @@
         "target": "piped.video"
     },
     {
+        "source": "music.youtube.com",
+        "target": "hyperpipe.surge.sh"
+    },
+    {
         "source": "stackoverflow.com",
         "target": "code.whatever.social"
     },
@@ -22,5 +26,37 @@
     {
         "source": "www.quora.com",
         "target": "quetre.iket.me"
+    },
+    {
+        "source": "medium.com",
+        "target": "scribe.rip"
+    },
+    {
+        "source": "www.tiktok.com",
+        "target": "proxitok.pabloferreiro.es"
+    },
+    {
+        "source": "imgur.com",
+        "target": "rimgo.hostux.net"
+    },
+    {
+        "source": "www.imdb.com",
+        "target": "libremdb.iket.me"
+    },
+    {
+        "source": "www.fandom.com",
+        "target": "breezewiki.com"
+    },
+    {
+        "source": "translate.google.com",
+        "target": "lingva.ml"
+    },
+    {
+        "source": "www.urbandictionary.com",
+        "target": "rd.vern.cc"
+    },
+    {
+        "source": "genius.com",
+        "target": "dm.vern.cc"
     }
 ]
