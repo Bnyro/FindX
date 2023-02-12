@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden !important;
 }
 
 /* Colors taken form Night Owl */
