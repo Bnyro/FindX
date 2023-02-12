@@ -1,6 +1,11 @@
 package utilities
 
-import "strings"
+import (
+	"regexp"
+	"strings"
+)
+
+var IsAlphabetic = regexp.MustCompile(`^[A-Za-z]+$`).MatchString
 
 func TakeN(text string, count int) string {
 	if len(text) < count {
