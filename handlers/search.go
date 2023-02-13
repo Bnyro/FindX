@@ -91,7 +91,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 				}()
 				go func() {
 					defer wg.Done()
-					weather, _ = engines.FetchWeather(query)
+					// weather, _ = engines.FetchWeather(query)
 				}()
 			}
 
