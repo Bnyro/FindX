@@ -121,6 +121,9 @@
     <section id="code">
       {{ range .code }}
       <a href="{{ .Url }}" class="container">
+        <p class="tags">
+          {{ range .Tags }}<span>{{ . }}</span>{{ end }}
+        </p>
         <h3>{{ .Title }}</h3>
         <p>
           {{ .AnswerCount }}{{ if .IsAnswered }} ✔{{ end }} ⋅ {{

@@ -9,6 +9,7 @@ type Stack struct {
 	CreationDate uint64   `json:"creation_date"`
 	ViewCount    uint64   `json:"view_count"`
 	Tags         []string `json:"tags"`
+	ClosedReason string   `json:"closed_reason"`
 	// manually added
 	ScoreStr        string `json:"score_str"`
 	CreationDateStr string `json:"creation_date_str"`
