@@ -34,6 +34,6 @@ func main() {
 	app.Get("/config", handlers.Config)
 	app.Get("/opensearch.xml", handlers.Opensearch)
 
-	fmt.Printf("Listening on: %s\n", *config.Addr)
-	http.ListenAndServe(*config.Addr, app)
+	fmt.Printf("Listening on: http://localhost:%s\n", *config.Port)
+	http.ListenAndServe(fmt.Sprintf(":%s", *config.Port), app)
 }

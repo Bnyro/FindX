@@ -3,15 +3,13 @@ package config
 import (
 	"encoding/json"
 	"flag"
-	"fmt"
-	"os"
 
 	_ "embed"
 
 	"github.com/bnyro/findx/entities"
 )
 
-var Addr *string
+var Port *string
 var Proxy *bool
 var Redirects []entities.Redirect
 
@@ -19,16 +17,10 @@ var Redirects []entities.Redirect
 var redirectsFile []byte
 
 func Init() {
-	Addr = flag.String("addr", ":8080", "address to listen on")
-	Proxy = flag.Bool("proxy", false, "weather to proxy all images")
-
 	json.Unmarshal(redirectsFile, &Redirects)
 
-	flag.Parse()
+	Port = getSetting("port", "8080", "port to listen on")
+	Proxy = getBool("proxy", false, "wether to proxy all images")
 
-	port := os.Getenv("PORT")
-	if port != "" {
-		addr := fmt.Sprintf("0.0.0.0:%s", port)
-		Addr = &addr
-	}
+	flag.Parse()
 }
