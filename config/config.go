@@ -3,6 +3,8 @@ package config
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
+	"os"
 
 	_ "embed"
 
@@ -23,4 +25,10 @@ func Init() {
 	json.Unmarshal(redirectsFile, &Redirects)
 
 	flag.Parse()
+
+	port := os.Getenv("PORT")
+	if port != "" {
+		addr := fmt.Sprintf("0.0.0.0:%s", port)
+		Addr = &addr
+	}
 }
