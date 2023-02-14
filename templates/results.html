@@ -35,30 +35,12 @@
       </label>
     </form>
     <section id="providers">
-      <a href="/search?q={{ .query }}&type=text" class="{{ if (eq .type "text") }}selected{{ end }}">
-        <img src="/static/text.svg" />
-        <span>General</span>
+      {{ range .providers }}
+      <a href="/search?q={{ $.query }}&type={{ .Query }}" class="{{ if (eq $.type .Query) }}selected{{ end }}">
+        <img src="/static/{{ .Query }}.svg" />
+        <span>{{ .Name }}</span>
       </a>
-      <a href="/search?q={{ .query }}&type=image" class="{{ if (eq .type "image") }}selected{{ end }}">
-        <img src="/static/image.svg" />
-        <span>Image</span>
-      </a>
-      <a href="/search?q={{ .query }}&type=news" class="{{ if (eq .type "news") }}selected{{ end }}">
-        <img src="/static/news.svg" />
-        <span>News</span>
-      </a>
-      <a href="/search?q={{ .query }}&type=code" class="{{ if (eq .type "code") }}selected{{ end }}">
-        <img src="/static/code.svg" />
-        <span>Code</span>
-      </a>
-      <a href="/search?q={{ .query }}&type=video" class="{{ if (eq .type "video") }}selected{{ end }}">
-        <img src="/static/video.svg" />
-        <span>Video</span>
-      </a>
-      <a href="/search?q={{ .query }}&type=music" class="{{ if (eq .type "music") }}selected{{ end }}">
-        <img src="/static/music.svg" />
-        <span>Music</span>
-      </a>
+      {{ end }}
     </section>
     {{ if .timeTaken }}
     <p id="timetaken">Fetched the results in {{ .timeTaken }}</p>

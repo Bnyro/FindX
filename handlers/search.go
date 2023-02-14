@@ -16,6 +16,16 @@ import (
 	"github.com/bnyro/findx/web"
 )
 
+// List of all available search types
+var providers = []entities.Type{
+	{Query: "text", Name: "General"},
+	{Query: "image", Name: "Image"},
+	{Query: "news", Name: "News"},
+	{Query: "code", Name: "Code"},
+	{Query: "video", Name: "Video"},
+	{Query: "music", Name: "Music"},
+}
+
 func Search(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
 	searchType := r.URL.Query().Get("type")
@@ -112,6 +122,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 		"type":      searchType,
 		"page":      page,
 		"timeTaken": fmt.Sprintf("%s", timeTaken),
+		"providers": providers,
 		"wiki":      wiki,
 		"dict":      dict,
 		"weather":   template.HTML(weather),
