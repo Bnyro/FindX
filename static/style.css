@@ -14,6 +14,7 @@
   --radius: 0.5rem;
   --filter: invert(92%) sepia(13%) saturate(391%) hue-rotate(187deg)
     brightness(97%) contrast(90%);
+  --max-width: min(90rem, 95vw);
 }
 
 html {
@@ -61,7 +62,7 @@ img {
   padding: 1rem;
   background-color: var(--surface);
   margin: 0.5rem;
-  max-width: 95vw;
+  width: var(--max-width);
 }
 
 #images {
@@ -292,7 +293,7 @@ img {
   align-items: center;
   flex-wrap: wrap;
   height: min-content;
-  max-width: 95rem;
+  max-width: var(--max-width);
 }
 
 #details>* {
@@ -388,4 +389,24 @@ img {
     width: 80vw;
     height: auto;
   }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  width: calc(var(--max-width) + 2rem);
+}
+
+.footer a:hover {
+  filter: drop-shadow(0 0 0.5rem var(--primary));
+}
+
+.footer img {
+  filter: var(--filter);
+  height: 1.25rem;
+  width: auto;
 }
