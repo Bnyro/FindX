@@ -39,21 +39,28 @@ func FetchWeather(query string) (string, error) {
 		return "", err
 	}
 
-	area := data["nearest_area"].([]interface{})[0]
-	areaName := area.(map[string]interface{})["areaName"].([]interface{})[0]
-	location := strings.ToLower(areaName.(map[string]interface{})["value"].(string))
-
-	region := area.(map[string]interface{})["region"].([]interface{})[0]
-	regionName := strings.ToLower(region.(map[string]interface{})["value"].(string))
-
-	country := area.(map[string]interface{})["country"].([]interface{})[0]
-	countryName := strings.ToLower(country.(map[string]interface{})["value"].(string))
+	areaName := extractValue(data, "areaName")
+	regionName := extractValue(data, "region")
+	countryName := extractValue(data, "country")
 
 	lowerQuery := strings.ToLower(query)
-	if location != lowerQuery && regionName != lowerQuery && countryName != lowerQuery {
-		return "", errors.New("Random result")
+	if areaName != lowerQuery && regionName != lowerQuery && countryName != lowerQuery {
+		return "", errors.New("Invalid result")
 	}
 
 	weather, _ := doc.Find("pre").First().Html()
 	return weather, nil
+}
+
+func extractValue(data web.Map, key string) string {
+	if data["nearest_area"] == nil {
+		return ""
+	}
+	areas := data["nearest_area"].([]interface{})
+	if len(areas) == 0 {
+		return ""
+	}
+	area := areas[0]
+	value := area.(map[string]interface{})[key].([]interface{})[0]
+	return strings.ToLower(value.(map[string]interface{})["value"].(string))
 }
