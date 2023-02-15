@@ -57,7 +57,7 @@ img {
 }
 
 .container {
-  border-radius: 1rem;
+  border-radius: calc(var(--radius) * 2);
   padding: 1rem;
   background-color: var(--surface);
   margin: 0.5rem;
@@ -394,14 +394,16 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: 1rem 2rem;
+  margin: 1rem 0 1.5rem;
   width: 100%;
-  width: calc(var(--max-width) + 2rem);
+  background-color: var(--surface);
+  border-radius: var(--radius);
+  width: calc(var(--max-width));
 }
 
 .footer a:hover {
-  filter: drop-shadow(0 0 0.5rem var(--primary));
+  filter: drop-shadow(0 0 0.3rem var(--primary));
 }
 
 .footer img {
