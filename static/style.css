@@ -134,6 +134,21 @@ img {
   aspect-ratio: 1/1;
 }
 
+#videos h3 {
+  height: 2.6em;
+  line-height: 1.3em;
+  overflow-y: hidden;
+}
+
+#videos p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+          line-clamp: 1; 
+  -webkit-box-orient: vertical;
+}
+
 .thumbnail-container {
   position: relative;
 }

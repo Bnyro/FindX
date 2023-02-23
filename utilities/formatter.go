@@ -7,7 +7,7 @@ import (
 
 func FormatDate(unixTime uint64) string {
 	t := time.Unix(int64(unixTime)/1000, 0)
-	return t.Format(time.RFC822)
+	return t.Format("02 Jan 2006")
 }
 
 func FormatDuration(seconds uint64) string {
