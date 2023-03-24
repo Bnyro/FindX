@@ -78,14 +78,21 @@ img {
   width: min-content;
 }
 
+#images a {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
 #images img {
   height: min(50vh, 18rem);
   transition: 200ms all ease-in-out;
+  overflow: hidden;
 }
 
 #images img:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
   transform-origin: center;
+  overflow: hidden;
 }
 
 #images .img-title {
@@ -141,11 +148,19 @@ img {
 }
 
 #videos p {
+  --lines: 1;
+}
+
+.img-title {
+  --lines: 2;
+}
+
+#videos p, .img-title {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* number of lines to show */
-          line-clamp: 1; 
+  -webkit-line-clamp: var(--lines); /* number of lines to show */
+          line-clamp: var(--lines); 
   -webkit-box-orient: vertical;
 }
 
