@@ -11,7 +11,11 @@ import (
 func Api(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query().Get("q")
 	searchType := r.URL.Query().Get("type")
-	page, err := strconv.Atoi(r.URL.Query().Get("page"))
+	pageQuery := r.URL.Query().Get("page")
+	page := 1
+	if !utilities.IsBlank(pageQuery) {
+		page, _ = strconv.Atoi(pageQuery)
+	}
 
 	if utilities.IsBlank(query) {
 		w.WriteHeader(http.StatusBadRequest)

@@ -106,6 +106,9 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 			}
 
 			results, err = engines.FetchText(escapedQuery, page)
+			if err != nil || len(results) == 0 {
+				results, err = engines.FetchTextFallback(escapedQuery, page)
+			}
 			// wait at most one additional second for the additional results
 			utilities.WaitTimeout(&wg, 1*time.Second)
 		}
@@ -121,7 +124,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 		"query":     query,
 		"type":      searchType,
 		"page":      page,
-		"timeTaken": fmt.Sprintf("%s", timeTaken),
+		"timeTaken": timeTaken.String(),
 		"providers": providers,
 		"wiki":      wiki,
 		"dict":      dict,

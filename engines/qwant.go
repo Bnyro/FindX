@@ -17,7 +17,7 @@ func FetchImage(query string, page int) ([]entities.Image, error) {
 	offset := (page - 1) * resultsPerPage
 
 	if offset+resultsPerPage >= 250 {
-		return images, errors.New("Count + offset must be smaller than 250")
+		return images, errors.New("count + offset must be smaller than 250")
 	}
 
 	uri := fmt.Sprintf("https://api.qwant.com/v3/search/images?q=%s&offset=%d&locale=en_gb&count=%d", query, offset, resultsPerPage)

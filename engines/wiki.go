@@ -37,7 +37,7 @@ func FetchWiki(query string) (entities.Wiki, error) {
 		description := utilities.TakeN(entry["extract"].(string), 350)
 
 		if description == "" || strings.Contains(description, "may refer to:") {
-			return result, errors.New("Not found")
+			return result, errors.New("not found")
 		}
 
 		result.Description = description

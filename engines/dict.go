@@ -21,7 +21,7 @@ func FetchDictionary(query string) (entities.Dict, error) {
 	}
 
 	if len(data) == 0 {
-		return dict, errors.New("Not found")
+		return dict, errors.New("not found")
 	}
 
 	meanings := data[0]["meanings"].([]interface{})

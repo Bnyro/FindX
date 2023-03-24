@@ -13,7 +13,7 @@ import (
 
 func FetchWeather(query string) (string, error) {
 	if !utilities.IsAlphabetic(query) {
-		return "", errors.New("Query must contain alphabetic chars only")
+		return "", errors.New("query must contain alphabetic chars only")
 	}
 
 	uri := fmt.Sprintf("https://wttr.in/%s?T?0", query)
@@ -45,7 +45,7 @@ func FetchWeather(query string) (string, error) {
 
 	lowerQuery := strings.ToLower(query)
 	if areaName != lowerQuery && regionName != lowerQuery && countryName != lowerQuery {
-		return "", errors.New("Invalid result")
+		return "", errors.New("invalid result")
 	}
 
 	weather, _ := doc.Find("pre").First().Html()

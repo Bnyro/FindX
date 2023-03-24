@@ -5,7 +5,6 @@ import (
 	"compress/gzip"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -21,7 +20,11 @@ func Request(uri string) ([]byte, []byte, error) {
 	}
 
 	req.AddCookie(&http.Cookie{Name: "CONSENT", Value: "YES+"})
-	req.Header.Set("User-Agent", "Mozilla/5.0")
+	
+	if (!strings.Contains(uri, "www.google.com")) {
+		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36")
+	}
+
 	resp, err := client.Do(req)
 
 	if err != nil || resp.StatusCode == 404 {
@@ -30,7 +33,7 @@ func Request(uri string) ([]byte, []byte, error) {
 
 	contentType := resp.Header.Get("Content-Type")
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 
 	if err != nil {
 		return nil, nil, err
