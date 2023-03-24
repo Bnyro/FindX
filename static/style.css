@@ -332,19 +332,19 @@ img {
 
 #wiki {
   display: flex;
+  gap: 1rem;
 }
 
 #wiki img {
-  height: 10rem;
+  max-height: 12rem;
+  width: auto;
 }
 
 #wiki p {
-  margin: 10px;
-  max-width: 25rem;
+  margin: 0.1rem;
 }
 
 #dict {
-  margin: 1rem;
   min-width: 30vw;
   display: flex;
   flex-direction: column;
@@ -391,6 +391,10 @@ img {
   .search-row-container {
     margin-top: 4rem;
   }
+  .search-row-input {
+    max-width: 66vw;
+  }
+
   #brand {
     position: absolute;
     margin: 0.7rem;
@@ -401,9 +405,7 @@ img {
   #brand .title {
     font-size: 2rem;
   }
-  .search-row-input {
-    max-width: 66vw;
-  }
+
   #wiki {
     flex-direction: column;
   }
@@ -411,9 +413,11 @@ img {
     width: 80vw;
     height: auto;
   }
+
   #news img {
     display: none;
   }
+
   #images img {
     width: 80vw;
     height: auto;
