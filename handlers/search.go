@@ -51,7 +51,11 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	templates.Template("results").Execute(w, response)
+	err = templates.Template("results").Execute(w, response)
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 }
 
 func GenerateSearchMap(query string, searchType string, page int) (map[string]interface{}, error) {
