@@ -1,7 +1,7 @@
 [
     {
         "source": "www.youtube.com",
-        "target": "piped.video"
+        "target": "piped.adminforge.de"
     },
     {
         "source": "music.youtube.com",
@@ -9,7 +9,7 @@
     },
     {
         "source": "stackoverflow.com",
-        "target": "ao.foss.wtf"
+        "target": "overflow.lunar.icu"
     },
     {
         "source": "www.reddit.com",
