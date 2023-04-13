@@ -6,11 +6,11 @@
 
 /* Colors taken form Night Owl */
 :root {
-  --background: #011627;
-  --foreground: #d6deeb;
-  --surface: #1d3b53;
+  --background: #111827;
+  --foreground: #f5f5f5;
+  --surface: #172135;
   --accent: #f78c6c;
-  --primary: #c792ea;
+  --primary: #e85e8f;
   --radius: 0.5rem;
   --filter: invert(92%) sepia(13%) saturate(391%) hue-rotate(187deg)
     brightness(97%) contrast(90%);
@@ -36,11 +36,26 @@ body {
 
 a {
   text-decoration: none;
+  position: relative;
   color: var(--foreground);
 }
 
-a:hover {
-  filter: brightness(0.9);
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--hover);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 img {
@@ -60,8 +75,13 @@ img {
   border-radius: calc(var(--radius) * 2);
   padding: 1rem;
   background-color: var(--surface);
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   width: var(--max-width);
+  transition: all ease-in-out 200ms;
+}
+
+.container:hover {
+  filter: brightness(1.2);
 }
 
 #images {
@@ -78,26 +98,21 @@ img {
   width: min-content;
 }
 
-#images a {
+#images div a {
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
-#images img {
+#images div img {
   height: min(50vh, 18rem);
-  transition: 200ms all ease-in-out;
-  overflow: hidden;
 }
 
-#images img:hover {
-  transform: scale(1.1);
-  transform-origin: center;
-  overflow: hidden;
-}
-
-#images .img-title {
+#images div .img-title {
   margin-top: 0.3rem;
   width: 100%;
+}
+
+#images div:hover .img-title {
+  filter: brightness(0.8);
 }
 
 #news > a {
@@ -277,26 +292,25 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.6rem 0.7rem;
   margin: 0.3rem;
+  gap: 0.3rem;
   border-radius: var(--radius);
   background: var(--surface);
+  --hover: var(--accent);
 }
 
-#providers a:hover, #providers .selected {
-  transition: all ease-in-out 200ms;
-  transform-origin: center;
-  box-shadow: 0 4px 2px -2px var(--accent);
+#providers .selected::after {
+  transform: scaleX(1);
 }
 
 #providers img {
-  height: 1.5rem;
+  height: 1.3rem;
   width: auto;
   filter: var(--filter);
 }
 
 #providers span {
-  margin-left: 0.2rem;
   font-weight: 700;
 }
 
@@ -314,6 +328,7 @@ img {
   margin: 0 0.5rem;
   border-radius: var(--radius);
   background: var(--surface);
+  --hover: var(--accent);
 }
 
 #details {
@@ -434,10 +449,7 @@ img {
   background-color: var(--surface);
   border-radius: var(--radius);
   width: calc(var(--max-width));
-}
-
-.footer a:hover {
-  filter: drop-shadow(0 0 0.3rem var(--primary));
+  --hover: var(--accent);
 }
 
 .footer img {
