@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"errors"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -110,6 +111,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 			}
 
 			results, err = engines.FetchText(escapedQuery, page)
+			err = errors.New("No")
 			if err != nil || len(results) == 0 {
 				results, err = engines.FetchTextFallback(escapedQuery, page)
 			}

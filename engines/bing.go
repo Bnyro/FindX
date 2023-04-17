@@ -28,7 +28,7 @@ func FetchTextFallback(query string, page int) ([]entities.Result, error) {
 		}
 
 		result.Url, _ = s.Find("a").First().Attr("href")
-		result.Short = s.Find(".b_caption cite").First().Text()
+		result.Short = utilities.HumanizeUrl(result.Url)
 		result.Description = s.Find(".b_caption p").First().Text()
 
 		if utilities.IsBlank(result.Description) {
