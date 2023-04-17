@@ -14,7 +14,6 @@ func FetchTextFallback(query string, page int) ([]entities.Result, error) {
 
 	uri := fmt.Sprintf("https://www.bing.com/search?q=%s&first=%d", query, (page-1)*10+1)
 	doc, err := web.RequestHtml(uri)
-	fmt.Println(uri)
 
 	if err != nil {
 		return results, err
@@ -28,9 +27,8 @@ func FetchTextFallback(query string, page int) ([]entities.Result, error) {
 			result.Title = s.Find("a").First().Text()
 		}
 
-		url := s.Find(".b_caption cite").First().Text()
-		result.Url = url
-		result.Short = url
+		result.Url, _ = s.Find("a").First().Attr("href")
+		result.Short = s.Find(".b_caption cite").First().Text()
 		result.Description = s.Find(".b_caption p").First().Text()
 
 		if utilities.IsBlank(result.Description) {
