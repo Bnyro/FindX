@@ -33,7 +33,7 @@ func GenerateSearchMap(query string, searchType string, page int) (map[string]in
 	switch searchType {
 	case "image":
 		images, err = engines.FetchImage(escapedQuery, page)
-		if err != nil {
+		if err != nil || len(images) == 0 {
 			images, err = engines.FetchImageFallback(escapedQuery, page)
 		}
 	case "news":
