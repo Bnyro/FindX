@@ -379,10 +379,6 @@ img {
   font-style: italic;
 }
 
-#weather {
-  margin: 1rem;
-}
-
 #error {
   min-height: 70vh;
   display: flex;
