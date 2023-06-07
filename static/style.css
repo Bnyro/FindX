@@ -418,10 +418,11 @@ img {
 
   #wiki {
     flex-direction: column;
+    align-items: center;
   }
   #wiki img {
-    width: 80vw;
-    height: auto;
+    width: 85vw;
+    max-height: none;
   }
 
   #news img {
