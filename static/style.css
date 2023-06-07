@@ -429,8 +429,8 @@ img {
     display: none;
   }
 
-  #images img {
-    width: 80vw;
+  #images div img {
+    width: 85vw;
     height: auto;
   }
 }
