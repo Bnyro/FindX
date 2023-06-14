@@ -1,62 +1,62 @@
 [
-    {
-        "source": "www.youtube.com",
-        "target": "piped.adminforge.de"
-    },
-    {
-        "source": "music.youtube.com",
-        "target": "hyperpipe.surge.sh"
-    },
-    {
-        "source": "stackoverflow.com",
-        "target": "overflow.lunar.icu"
-    },
-    {
-        "source": "www.reddit.com",
-        "target": "r.nf"
-    },
-    {
-        "source": "en.wikipedia.org",
-        "target": "wikiless.org"
-    },
-    {
-        "source": "twitter.com",
-        "target": "nitter.net"
-    },
-    {
-        "source": "www.quora.com",
-        "target": "quetre.iket.me"
-    },
-    {
-        "source": "medium.com",
-        "target": "scribe.rip"
-    },
-    {
-        "source": "www.tiktok.com",
-        "target": "proxitok.pabloferreiro.es"
-    },
-    {
-        "source": "imgur.com",
-        "target": "rimgo.hostux.net"
-    },
-    {
-        "source": "www.imdb.com",
-        "target": "libremdb.iket.me"
-    },
-    {
-        "source": "www.fandom.com",
-        "target": "breezewiki.com"
-    },
-    {
-        "source": "translate.google.com",
-        "target": "lingva.ml"
-    },
-    {
-        "source": "www.urbandictionary.com",
-        "target": "rd.vern.cc"
-    },
-    {
-        "source": "genius.com",
-        "target": "dm.vern.cc"
-    }
+  {
+    "source": "www.youtube.com",
+    "target": "piped.adminforge.de"
+  },
+  {
+    "source": "music.youtube.com",
+    "target": "hyperpipe.surge.sh"
+  },
+  {
+    "source": "stackoverflow.com",
+    "target": "overflow.lunar.icu"
+  },
+  {
+    "source": "www.reddit.com",
+    "target": "r.nf"
+  },
+  {
+    "source": "en.wikipedia.org",
+    "target": "wikiless.northboot.xyz"
+  },
+  {
+    "source": "twitter.com",
+    "target": "nitter.net"
+  },
+  {
+    "source": "www.quora.com",
+    "target": "quetre.iket.me"
+  },
+  {
+    "source": "medium.com",
+    "target": "scribe.rip"
+  },
+  {
+    "source": "www.tiktok.com",
+    "target": "proxitok.pabloferreiro.es"
+  },
+  {
+    "source": "imgur.com",
+    "target": "rimgo.hostux.net"
+  },
+  {
+    "source": "www.imdb.com",
+    "target": "libremdb.iket.me"
+  },
+  {
+    "source": "www.fandom.com",
+    "target": "breezewiki.com"
+  },
+  {
+    "source": "translate.google.com",
+    "target": "lingva.ml"
+  },
+  {
+    "source": "www.urbandictionary.com",
+    "target": "rd.vern.cc"
+  },
+  {
+    "source": "genius.com",
+    "target": "dm.vern.cc"
+  }
 ]
